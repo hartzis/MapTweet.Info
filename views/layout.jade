@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description", content="")
+    meta(name="author", content="")
+    link(rel="shortcut icon", href="ico/favicon.ico")
+    title Globally Look Up Tweets
+    // Bootstrap core CSS
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    // Custom styles for this template
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
+  body(ng-app="locationToLatlongApp")
+    .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+      .container
+        .navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") Globally Look Up Tweets
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href="#") Search
+            li
+              a(href="#") GeoTweets
+            li
+              a(href="#") All Tweets
+        // /.nav-collapse
+    .container(ng-view="")
+      
+
+    script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js")
+    // <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.js"></script>
+    script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-route.min.js")
+    // script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ak6xOdL_E2nLh8Y527YroGYoGk_J420&sensor=FALSE")
+
+    // load angular app
+    script(src="js/min/app.min.js")
+
