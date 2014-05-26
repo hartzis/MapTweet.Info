@@ -12,6 +12,7 @@ module.exports = {
  },
  partials : function (req, res) {
    var name = req.params.name;
+   console.log('partial render-', name);
    res.render('partials/' + name);
  }
 }

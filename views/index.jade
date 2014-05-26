@@ -12,6 +12,8 @@ html(lang="en")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
     // Custom styles for this template
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
+    // custom css
+    link(rel="stylesheet", href="styles/main.css")
   body(ng-app="glutApp")
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container
@@ -25,12 +27,16 @@ html(lang="en")
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li.active
-              a(href="#") Search
+              a(href="#") Search for GeoTweets
             li
               a(href="#") GeoTweets
             li
               a(href="#") All Tweets
-        // /.nav-collapse
+          ul.nav.navbar-nav.navbar-right
+            li.text-center: button(type="button").btn.btn-primary.navbar-btn Sign in with Twitter
+            li: a(href="#") About
+
+    // angular inject views
     .container(ng-view="")
      
     script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js") 
