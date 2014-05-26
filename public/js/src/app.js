@@ -8,11 +8,11 @@ var glutApp = angular.module('glutApp', [
 ]);
 
 
-latlongApp.config(['$routeProvider',
+glutApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/index',
+                templateUrl: 'partials/main',
                 controller: 'MainCtrl'
             })
             .otherwise({

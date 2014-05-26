@@ -1,0 +1,79 @@
+.row
+  #info.small-12.medium-6.columns
+      .row
+        #tweet-feed.small-12.columns.hide
+          #tweets-container
+        #search-form.small-12.columns.panel
+          form(action='', method='POST', role='form')
+            .row
+              .small-12.columns.text-center
+                h5 Add Location and Query then Submit!
+            .row
+              .small-6.columns
+                .row.collapse
+                  .small-3.columns
+                    span.prefix Lat:
+                  .small-9.columns
+                    input#lat(type='text', name='lat', placeholder='Latitude')
+              .small-6.columns
+                .row.collapse
+                  .small-3.columns
+                    span.prefix Long:
+                  .small-9.columns
+                    input#long(type='text', name='long', placeholder='Longitude')
+            .row
+              .small-6.columns
+                .row
+                  .small-8.columns
+                    .row.collapse
+                      .small-6.columns
+                        span.prefix Radius:
+                      .small-6.columns
+                        input#radius(type='text', name='radius', placeholder='Dist')
+                  .small-4.columns
+                    select#radius-in(name='radius-in')
+                      option(value='mi') Mi
+                      option(value='km') Km
+              .small-6.columns
+                .row
+                  .small-4.columns
+                    label.right.inline(for='right-label') Test City
+                  .small-8.columns
+                    select(name='testCity')
+                      option(value='denver') Denver
+                      option(value='newyork') New York
+                      option(value='paris') Paris
+            .row
+              .small-12.columns
+                .row
+                  .large-12.columns
+                    label
+                      | Search Query
+                      input(type='text', name='searchQuery', placeholder='@billgates')
+                .row
+                  .large-12.columns
+                    p.search-info
+                      | A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity.Example: @noradio.
+            .row
+              .small-12.small-centered.columns.text-center
+                button#search-twitter.small.button(type='submit') Submit
+    .small-12.medium-6.columns
+      .row
+        #map.small-12.columns
+  #tweet-container.row.tweet-container.panel.radius(data-tweet-id='')
+    .small-2.columns
+      img.user-icon(src='')
+    .small-10.columns
+      .row
+        .small-8.columns
+          h6
+            span.user-name
+            small
+              span.user-screen-name
+        .small-4.columns
+          h6
+            small
+              span.date-span
+      .row
+        .small-12.columns
+          span.tweet-text

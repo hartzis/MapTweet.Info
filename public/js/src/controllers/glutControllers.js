@@ -1,6 +1,6 @@
 'use strict';
 
-var latlongControllers = angular.module('glutControllers', [])
+var glutControllers = angular.module('glutControllers', [])
 
 glutControllers.controller('MainCtrl', ['$scope', '$http',
     function($scope, $http) {
