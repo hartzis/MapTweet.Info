@@ -9,7 +9,12 @@ glutControllers.controller('MainCtrl', ['$scope', 'factoryLatLng',
         
         $scope.getGeo = function(address) {
           console.log('getGeo-', address);
-          factoryLatLng.getLatLng(address);
+          factoryLatLng.getLatLng(address)
+            .then(function(data) {
+              $scope.search.latitude = data.latitude;
+              $scope.search.longitude = data.longitude;
+            });
+          
         };
 
         $scope.queryAddresses = function(address) {

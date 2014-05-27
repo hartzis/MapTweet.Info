@@ -7,6 +7,15 @@ glutServices.factory('factoryLatLng', ['$http', function($http) {
         
       console.log('factory getLatLng-', address);
 
+      return $http.get('/getLatLng', {
+        params: {
+          address: address
+        }
+      }).then(function(res) {
+        console.log(res);
+        return res.data;
+      })
+
           // perform the ajax request then process what is returned, and forward recompiled info
         // function getPagedResource(baseResource, pageIndex, pageSize) {
         //     var resource = baseResource;
@@ -23,7 +32,7 @@ glutServices.factory('factoryLatLng', ['$http', function($http) {
       
     },
     queryAddresses: function(address) {
-      console.log('querying-', address);
+      // console.log('querying-', address);
       return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           address: address,

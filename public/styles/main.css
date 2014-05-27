@@ -2,6 +2,12 @@ body {
   padding-top: 60px;
 }
 
+/*
+ * Glyph refresh placement
+*/
+.glyphicon-refresh {
+  position: absolute;
+}
 
 /*
  * Off Canvas
