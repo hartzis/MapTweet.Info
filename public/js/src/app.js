@@ -3,7 +3,9 @@
 var glutApp = angular.module('glutApp', [
     'ngResource',
     'ngRoute',
-    'glutControllers'
+    'glutControllers',
+    'glutServices',
+    'ui.bootstrap'
 
 ]);
 

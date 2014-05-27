@@ -1,19 +1,32 @@
 .row.row-offcanvas.row-offcanvas-left
   p.pull-left.visible-xs
-    button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') Toggle nav
-  #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas(role='navigation')
+    button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') Toggle
+  #sidebar.col-xs-6.col-sm-2.sidebar-offcanvas(role='navigation')
     .list-group
       a.list-group-item.active(href='#') Search for Tweets
       a.list-group-item(href='#') GeoTweets
       a.list-group-item(href='#') All tweets in Area
 
-  .col-xs-12.col-sm-9
+  .col-xs-12.col-sm-3
+    .row
+      .col-xs-12
+        form(name="locationInput")
+          input.form-control(type="text", name="location", ng-model="search.address", required="", placeholder="Location to find GeoTweets", typeahead="address for address in queryAddresses($viewValue)", typeahead-loading="loadingLocations")
+          i(ng-show="loadingLocations" class="glyphicon glyphicon-refresh")
+    .row
+      .col-xs-12.text-center
+        button.btn.btn-sm.btn-success(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.address)") Get Lat/Lng
+    .row
+      form(name="searchForm")
+        .col-xs-6
+          input.form-control(type="text", name="lat", ng-model="search.latitude", required="", placeholder="Latitude", disabled="disabled")
+        .col-xs-6
+          input.form-control(type="text", name="lng", ng-model="search.longitude", required="", placeholder="Longitude", disabled="disabled")
+    .row
+      .col-xs-12.text-center
+        button.btn.btn-sm.btn-success(ng-href="#", ng-disabled="searchForm.$invalid", ng-click="") Search Twitter
+
+  .col-xs-12.col-sm-7
     .row
       .col-sm-12
-        form(action='', method='POST', role='form')
-          legend Form title
-          .form-group
-            label(for='') label
-            input.form-control(type='text', placeholder='Input field')
-          button.btn.btn-primary(type='submit') Submit 
-          
+        img(src="http://placehold.it/500x400", alt="").img-responsive
