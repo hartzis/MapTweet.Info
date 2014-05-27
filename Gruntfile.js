@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         files: [
           {
             // key is the destination, value is the source
-            "public/js/min/app.min.js": ["public/js/src/app.js", "public/js/src/controllers/*.js"]
+            "public/js/min/app.min.js": ["public/js/src/*.js", "public/js/src/*/*.js"]
           }
         ],
         // set options for this
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
       // watch js files
       // uglify development subtask
       js: {
-        files: ['public/js/src/*/*.js', 'public/js/src/*.js'],
+        files: ['public/js/src/*.js', 'public/js/src/*/*.js'],
         tasks: 'uglify:development'
       }
     }

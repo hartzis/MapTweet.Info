@@ -1,5 +1,13 @@
-.row
-  .col-sm-12
+.row.row-offcanvas.row-offcanvas-left
+  p.pull-left.visible-xs
+    button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') Toggle nav
+  #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas(role='navigation')
+    .list-group
+      a.list-group-item.active(href='#') Search for Tweets
+      a.list-group-item(href='#') GeoTweets
+      a.list-group-item(href='#') All tweets in Area
+
+  .col-xs-12.col-sm-9
     .row
       .col-sm-12
         form(action='', method='POST', role='form')
