@@ -5,7 +5,7 @@ glutLatLngServices.factory('factoryLatLng', ['$http', function($http) {
   return {
     // retrieve lat/lng from server to save users requests
     getLatLng: function(address) {
-      return $http.get('/getLatLng', {
+      return $http.get('/api/getLatLng', {
         params: {
           address: address
         }
