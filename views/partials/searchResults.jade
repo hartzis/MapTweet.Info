@@ -1,0 +1,15 @@
+.row
+  .col-xs-5
+    h1 {{searchId}}
+    tabset
+      tab
+        tab-heading GeoTweets
+          span.badge.pull-right {{results.tweets.length}}
+        .tweet(ng-repeat="tweet in results.tweets")
+          h5 {{tweet.text}}
+      tab
+        tab-heading All tweets in Area
+          span.badge.pull-right {{results.tweets.length}}
+        h5 This means it switched!
+        .tweet(ng-repeat="tweet in results.tweets")
+          h5 {{tweet.text}}

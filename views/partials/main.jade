@@ -1,68 +1,44 @@
-.row.row-offcanvas.row-offcanvas-left
-  p.pull-left.visible-xs
-    button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas')
-      i.glyphicon.glyphicon-chevron-left
-  #sidebar.col-xs-6.col-sm-2.sidebar-offcanvas.sidebar(role='navigation')
-    ul.nav.nav-sidebar
-      li.active
-        a(href='#') Search
-      li
-        a(href='#') GeoTweets
-          span.badge.pull-right 25
-      li
-        a(href='#') All tweets in Area
-          span.badge.pull-right 45
-    //- .list-group.text-center
-    //-   a.list-group-item.active(href='#') Search
-    //-   a.list-group-item(href='#') GeoTweets
-    //-   a.list-group-item(href='#') All tweets in Area
-
-  .col-xs-12.col-sm-4.main-columns
-    .row.text-center.search-window
-      .col-xs-12
-        .row
-          .col-xs-12
-            h3 Search for Tweets by Location
-        form(name="locationInput")
-          input.form-control(type="text", name="location", ng-model="search.address", required="", placeholder="Location to find GeoTweets", typeahead="address for address in queryAddresses($viewValue)", typeahead-loading="loadingLocations", autocomplete="off")
-          i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
-        .row
-          .col-xs-12.text-center
-            button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.address)") Get Lat/Lng
-        .row
-          .col-xs-12
-            form(name="searchForm")
-              .row
-                .col-xs-6
-                  input.form-control(type="text", name="lat", ng-model="search.latitude", required="", placeholder="Latitude", disabled="disabled")
-                .col-xs-6
-                  input.form-control(type="text", name="lng", ng-model="search.longitude", required="", placeholder="Longitude", disabled="disabled")
-              .row
-                .col-xs-12
-                  button(type="button").btn.btn-sm.btn-primary Use My Current Location
-              .input-group
-                span.input-group-addon Radius:
-                input.form-control(type='text', placeholder="Ex:'5'" ng-model="search.radius")
-                .input-group-btn
-                  button.btn.btn-default(tabindex='-1', type='button') {{search.radiusUnit}}
-                  button.btn.btn-default.dropdown-toggle(tabindex='-1', data-toggle='dropdown', type='button')
-                    span.caret
-                    span.sr-only Toggle Dropdown
-                  ul.dropdown-menu.pull-right
-                    li
-                      a(ng-click="changeRadiusUnit('Km')").btn.btn-default Km
-                    li
-                      a(ng-click="changeRadiusUnit('Mi')").btn.btn-default Mi
-              .row
-                .col-xs-12
-                  input.form-control(type="text", name="query", ng-model="search.query", required="", placeholder="@Billgates, #MSFT")
-                  span.help-block Your Search Query - A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity.Example: @noradio.
-
-        .row
-          .col-xs-12.text-center
-            button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="searchForm.$invalid", ng-click="") Search Twitter
-
-  .col-xs-12.col-sm-6.main-columns
+.row.text-center.search-window
+  .col-xs-12.col-sm-6.col-sm-offset-3.main-columns
     .row
-      .col-sm-12
-        img(src="http://placehold.it/500x400", alt="").img-responsive
+      .col-xs-12
+        h3 Search for Tweets by Location
+    form(name="locationInput")
+      input.form-control(type="text", name="location", ng-model="search.address", required="", placeholder="Location to find GeoTweets", typeahead="address for address in queryAddresses($viewValue)", typeahead-loading="loadingLocations", autocomplete="off")
+      i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
+    .row
+      .col-xs-12.text-center
+        button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.address)") Get Lat/Lng
+    .row
+      .col-xs-12
+        form(name="searchForm")
+          .row
+            .col-xs-6
+              input.form-control(type="text", name="lat", ng-model="search.latitude", required="", placeholder="Latitude", disabled="disabled")
+            .col-xs-6
+              input.form-control(type="text", name="lng", ng-model="search.longitude", required="", placeholder="Longitude", disabled="disabled")
+          .row
+            .col-xs-12
+              button(type="button", ng-click="getCurrentLocation()").btn.btn-sm.btn-primary {{search.useCurrentLocation}}
+          .input-group
+            span.input-group-addon Radius:
+            input.form-control(type='text', placeholder="Ex:'5'" ng-model="search.radius")
+            .input-group-btn
+              button.btn.btn-default(tabindex='-1', type='button', disabled="disabled") {{search.radiusUnit}}
+              button.btn.btn-default.dropdown-toggle(tabindex='-1', data-toggle='dropdown', type='button')
+                span.caret
+                span.sr-only Toggle Dropdown
+              ul.dropdown-menu.pull-right.radius-unit
+                li
+                  a(ng-click="changeRadiusUnit('Km')").btn.btn-default Km
+                li
+                  a(ng-click="changeRadiusUnit('Mi')").btn.btn-default Mi
+          .row
+            .col-xs-12
+              input.form-control(type="text", name="query", ng-model="search.query", required="", placeholder="@Billgates, #MSFT")
+              span.help-block Your Search Query - A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity.Example: @noradio.
+
+    .row
+      .col-xs-12.text-center
+        button.btn.btn-sm.btn-primary(ng-href="search/12345", ng-disabled="searchForm.$invalid", ng-click="performSearch()") Search Twitter
+        a(href="#search/12345") Test Search

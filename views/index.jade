@@ -25,19 +25,14 @@ html(lang="en")
             span.icon-bar
           a.navbar-brand(href="#") Globally Look Up Tweets
         .collapse.navbar-collapse
-          //- ul.nav.navbar-nav
-          //-   li.active
-          //-     a(href="#") Search for GeoTweets
-          //-   li
-          //-     a(href="#") GeoTweets
-          //-   li
-          //-     a(href="#") All Tweets
-          ul.nav.navbar-nav.navbar-right
-            li.text-center: button(type="button").btn.btn-primary.navbar-btn Sign in with Twitter
+          ul.nav.navbar-nav.navbar-right        
             li: a(href="#") About
+          form.navbar-form.navbar-right(role='search')
+            button.btn.btn-primary(type='button') Search 
+              span.glyphicon.glyphicon-search
 
     // angular inject views
-    .container-fluid(ng-view="")
+    .container(ng-view="")
 
 
     // required for bootstrap

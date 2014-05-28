@@ -22,7 +22,7 @@ var getLatLongFromLocation = function(location, cb) {
         });
         res.on('end', function() {
             var body = JSON.parse(results);
-            console.log(body);
+            //console.log(body);
             if (body.error_message) {
                 console.log(body.error_message);
                 return;
