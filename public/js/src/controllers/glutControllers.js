@@ -6,6 +6,15 @@ glutControllers.controller('MainCtrl', ['$scope', 'factoryLatLng',
     function($scope, factoryLatLng) {
         
         console.log('glutControllers and MainCtrl loaded');
+
+        // init settings
+        $scope.search = {};
+        $scope.search.radiusUnit = 'Km';
+
+        // set search radius unit type
+        $scope.changeRadiusUnit = function(unit) {
+          $scope.search.radiusUnit = unit;
+        };
         
         $scope.getGeo = function(address) {
           console.log('getGeo-', address);
