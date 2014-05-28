@@ -46,8 +46,8 @@ var getLatLongFromLocation = function(location, cb) {
 
 var locationControllers = {
     getLatLng: function(req, res) {
-        console.log('request address-', req.query)
-        var theLocation = req.query.address;
+        console.log('request location-', req.query)
+        var theLocation = req.query.location;
         getLatLongFromLocation(theLocation, function(loc) {
             res.send(loc);
         })

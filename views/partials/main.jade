@@ -3,12 +3,14 @@
     .row
       .col-xs-12
         h3 Search for Tweets by Location
-    form(name="locationInput")
-      input.form-control(type="text", name="location", ng-model="search.address", required="", placeholder="Location to find GeoTweets", typeahead="address for address in queryAddresses($viewValue)", typeahead-loading="loadingLocations", autocomplete="off")
-      i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
+    .row
+      .col-xs-12.text-left
+        form(name="locationInput")
+          input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off")
+          i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
     .row
       .col-xs-12.text-center
-        button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.address)") Get Lat/Lng
+        button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.location)") Get Lat/Lng
     .row
       .col-xs-12
         form(name="searchForm")
@@ -35,10 +37,11 @@
                   a(ng-click="changeRadiusUnit('Mi')").btn.btn-default Mi
           .row
             .col-xs-12
-              input.form-control(type="text", name="query", ng-model="search.query", required="", placeholder="@Billgates, #MSFT")
+              input.form-control(type="text", name="query", ng-model="search.query", required="", placeholder="from:jimcramer #MSFT")
               span.help-block Your Search Query - A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity.Example: @noradio.
+              a(href="https://dev.twitter.com/docs/using-search", target="_blank").btn.btn-info Search Query Format Help
 
     .row
       .col-xs-12.text-center
-        button.btn.btn-sm.btn-primary(ng-href="search/12345", ng-disabled="searchForm.$invalid", ng-click="performSearch()") Search Twitter
+        button.btn.btn-sm.btn-primary(ng-href="search/12345", ng-disabled="searchForm.$invalid", ng-click="submitSearch()") Search Twitter
         a(href="#search/12345") Test Search

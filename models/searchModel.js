@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 // create search storage schema
 var geoSearchSchema = mongoose.Schema({
-  searchLocation: {
+  location: {
     type: String
   },
   latitude: {
@@ -17,8 +17,11 @@ var geoSearchSchema = mongoose.Schema({
   radiusUnit: {
     type: String
   },
-  searchQuery: {
-    type: [String]
+  query: {
+    type: String
+  },
+  usedCurrentLocation: {
+    type: Boolean
   },
   createdOn: {
     type: Date,
@@ -28,4 +31,11 @@ var geoSearchSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   }
-})
+});
+
+// create search model
+var GeoSearch = mongoose.model('geosearch', geoSearchSchema);
+
+module.exports = {
+  GeoSearch: GeoSearch
+}

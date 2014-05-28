@@ -18,18 +18,22 @@ var angularRoutes = require('./controllers/angularRoutes.js');
 // location route controllers
 var locationController = require('./controllers/locationController.js');
 
+// load search save/load controller
+var searchController = require('./controllers/searchController');
+
 app.get('/', function(req, res) {
 	res.render('index');
 });
 
 app.get('/partials/:name', angularRoutes.partials);
 
+// retrieve the lat/lng of a location/address
 app.get('/api/getLatLng', locationController.getLatLng);
 
 // save search information
-app.post('/api/search')
+app.post('/api/search', searchController.postSearch)
 // perform twitter api search and return tweets
-app.get('/api/search')
+app.get('/api/search', searchController.getSearch)
 
 var server = app.listen(5536, function() {
 	console.log('Express server listening on port ' + server.address().port);
