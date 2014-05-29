@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-// We need database persistence
+// mongodb database persistence via mongoose
 var mongoose = require('mongoose');
 // Connect to the database
 mongoose.connect('mongodb://localhost/glut');
@@ -13,12 +13,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser());
 
 // setup base angular route renders
-var angularRoutes = require('./controllers/angularRoutes.js');
+var angularRoutes = require('./controllers/angularRoutes');
 
 // location route controllers
-var locationController = require('./controllers/locationController.js');
+var locationController = require('./controllers/locationController');
 
-// load search save/load controller
+// load search save/load
+// and twitter api search controller 
 var searchController = require('./controllers/searchController');
 
 app.get('/', function(req, res) {
