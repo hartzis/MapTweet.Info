@@ -36,7 +36,7 @@ var findGeoSearch = function(searchId, cb) {
 }
 
 // perform the twitter api search
-var twitterSearch = function(query, cb, options) {
+var twitterSearch = function(cb, options) {
 
   var T = new Twit({
     consumer_key:         conf.twitterApiKey
@@ -45,19 +45,23 @@ var twitterSearch = function(query, cb, options) {
   , access_token_secret:  conf.myTwitterTokenSecret
   });
 
+  var query = options.query || '';
   var count = options.count || 20;
   var geocode = options.geocode || '';
   var until = options.until || '';
   var since_id = options.since_id || '';
 
+  console.log('about to perform twitter api call-', query, geocode, count);
 
   T.get('search/tweets', {
     q: query,
     geocode: geocode,
-    count: count,
-    until: until,
-    since_id: since_id
+    count: count
   }, function(err, data, response) {
+    if (err){
+      console.log('err-', err);
+    }
+    console.log('response-', response);
     console.log('tweets returned-', data);
     cb(data);
   })
@@ -85,14 +89,19 @@ var searchController = {
   },
   // perform twitter api search route
   getSearch: function(req, res) {
-    console.log('req-', req);
-    console.log('req.query-', req.query);
     var searchId = req.query.searchId;
-
+    console.log('req query searchId-', searchId);
     findGeoSearch(searchId, function(foundSearch) {
-      console.log('sending found search-', foundSearch);
-      res.send(foundSearch)
-    })
+      // setup twitter api search params
+      var options = {
+        query: foundSearch.query,
+        geocode: ''+foundSearch.latitude+','+foundSearch.longitude+','+foundSearch.radius+foundSearch.radiusUnit.toLowerCase()
+      }
+      console.log('submitting twitter api call with these options-', options);
+      twitterSearch(function(tweets) {
+        res.send(tweets)
+      }, options);
+    });
   }
 }
 
