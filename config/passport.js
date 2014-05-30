@@ -8,8 +8,9 @@ var User = require('../models/userModel')
 // load api keys
 var conf = require('../conf.js')
 
-// serialize and deserialize by twitter id
+// serialize and deserialize by mongo db user id
 passport.serializeUser(function(user, done) {
+  // uses user._id for id
   done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
@@ -21,12 +22,12 @@ passport.deserializeUser(function(id, done) {
 // make the twitter strategy
 
 var twitterStrategy = new TwitterStrategy({
-        consumerKey: conf.twitter.ApiKey,
-        consumerSecret: conf.twitter.ApiSecret,
-        callbackURL: conf.twitter.callbackURL
+        consumerKey: conf.twitter.ApiKey || process.env.twitterApiKey,
+        consumerSecret: conf.twitter.ApiSecret || process.env.twitterApiSecret,
+        callbackURL: conf.twitter.callbackURL || process.env.twitterCallbackURL
     },
     function(token, tokenSecret, profile, done) {
-        console.log('token-', token, 'tokenSecret-', tokenSecret, 'profile-', profile);
+        console.log('token-', token, 'tokenSecret-', tokenSecret, 'profile-', profile.username, profile.id);
         User.findOrCreate(token, tokenSecret, profile, function(err, user) {
             if (err) {
                 return done(err);

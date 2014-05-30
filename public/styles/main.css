@@ -30,6 +30,19 @@ body {
   /*margin: 5px;*/
 }
 
+/* profile image */
+.profile-image {
+  max-height: 40px;
+  width: auto;
+  vertical-align: middle;
+}
+#history-link {
+  padding: 5px 0;
+}
+.profile-name {
+  line-height: 20px;
+}
+
 /*
  * Glyph refresh placement
 */

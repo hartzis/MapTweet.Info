@@ -17,7 +17,7 @@ glutApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'partials/main',
+                templateUrl: 'partials/search',
                 controller: 'searchCtrl'
             })
             .when('/search/:searchId', {

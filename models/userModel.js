@@ -1,8 +1,5 @@
 var mongoose = require('mongoose');
 
-// require search model to store saved searches to user
-var searchModel = require('./searchModel.js')
-
 // create user schema for wanted attributes
 var userSchema = mongoose.Schema({
   user_name: {
@@ -17,7 +14,7 @@ var userSchema = mongoose.Schema({
     default: Date.now
   },
   geo_searches: {
-    type: [searchModel.GeoSearch]
+    type: [mongoose.Schema.ObjectId]
   },
   twitter_id: {
     type: String,
@@ -42,19 +39,26 @@ var User = mongoose.model('user', userSchema);
 var findOrCreate = function(token, tokenSecret, profile, cb) {
     console.log('trying to find or create new twitter user-', profile.username, profile.id);
     // try to find user
-    twitterUser.findOne({
-        twitter_id: profile.id;
+    User.findOne({
+        twitter_id: profile.id
     }, function(err, user) {
         if (err) console.log('error finding-', err);
         if (user) {
-            console.log('found user-', user.screen_name, user.twitter.id_str, )
-            User.update(user.twitter_id, {$set:{twitter_token: token, twitter_tokenSecret: tokenSecret, twitter:profile._json}}, function(err, user) {
-              if (err){
-                console.log('error updating user info-', err);
-                cb(err, user);
-              } else {
-                cb(err, user)
-              }
+            console.log('found user-', user.screen_name, user.twitter_id);
+            user.twitter = profile._json;
+            user.twitter_token = token;
+            user.twitter_tokenSecret = tokenSecret;
+            // User.update({twitter_id: user.twitter_id}, {$set:{twitter_token: token, twitter_tokenSecret: tokenSecret, twitter: profile._json}}, function(err, user) {
+            //   if (err){
+            //     console.log('error updating user info-', err);
+            //     cb(err, user);
+            //   } else {
+            //     cb(err, user)
+            //   }
+            // })
+            user.save(function(err, user) {
+              if (err) console.log('error updating user info-', err);
+              cb(err, user)
             })
         // didn't find user, saving new user
         } else {
@@ -78,7 +82,7 @@ var findOrCreate = function(token, tokenSecret, profile, cb) {
                 console.log('error saving-', err);
                 cb(err, user);
               } else {
-                console.log('this user saved-', user);
+                console.log('this user saved-', user.screen_name);
                 cb(err, user);
               }
             })

@@ -30,7 +30,12 @@ html(lang="en")
               a(href="/") Search 
                 span.glyphicon.glyphicon-search       
             li: a(href="#") About
-            li: a(href="#") Sign Out 
+            li
+              a#history-link(href="/history")
+                img.profile-image(src=twitter_user.profile_image_url)
+                //- span &nbsp@
+                //- span.profile-name=twitter_user.screen_name
+            li: a(href="/auth/logout") Sign Out 
               span.glyphicon.glyphicon-remove
 
     // angular inject views

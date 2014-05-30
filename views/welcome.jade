@@ -13,7 +13,7 @@ html(lang="en")
     // Custom styles for this template
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
     // custom css
-    link(rel="stylesheet", href="styles/main.css")
+    link(rel="stylesheet", href="../styles/main.css")
   body
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container-fluid
@@ -32,8 +32,8 @@ html(lang="en")
       .row
         .col-xs-12.col-sm-6.col-sm-offset-3
           .row
-            .col-xs-12
-              h1.text-center Globally Look Up Tweets
+            .col-xs-12.text-center
+              h1 Globally Look Up Tweets
               p 
               | This web application allows you to search the twitter api for tweets at a given location with a specific query.   The twitter API requires your login credentials to perform geo-located searches, so please sign in below to continue!
           .row

@@ -1,5 +1,7 @@
 // load model to save searches
 var searchModel = require('../models/searchModel.js');
+// inlude user model
+var User = require('../models/userModel')
 
 // twitter api node module
 var Twit = require('twit');
@@ -33,10 +35,10 @@ var findGeoSearch = function(searchId, cb) {
 var twitterSearch = function(cb, options) {
 
   var T = new Twit({
-    consumer_key:         conf.twitter.ApiKey
-  , consumer_secret:      conf.twitter.ApiSecret
-  , access_token:         conf.twitter.myTwitterToken
-  , access_token_secret:  conf.twitter.myTwitterTokenSecret
+    consumer_key:         conf.twitter.ApiKey || process.env.twitterApiKey
+  , consumer_secret:      conf.twitter.ApiSecret || process.env.twitterApiSecret
+  , access_token:         options.access_token
+  , access_token_secret:  options.access_token_secret
   });
 
   var query = options.query || '';
@@ -81,14 +83,23 @@ var searchController = {
   },
   // perform twitter api search route
   getSearch: function(req, res) {
+    // get user from logged in session
+    var userInfo = req.user;
     // get search id
     var searchId = req.query.searchId;
     // find requested search by id
     findGeoSearch(searchId, function(foundSearch) {
-      // setup twitter api search params
+      // save search to user's searches
+      // User.User.update({_id: userInfo.id}, {$set{geo_searches: {}}})
+      User.User.findByIdAndUpdate(userInfo.id,{$push:{"geo-searches":foundSearch}}, function(err, savedSearch) {
+        if (err) console.log('error saving search to user');
+      })
+      // setup twitter api search params and get user token and token secret
       var options = {
         query: foundSearch.query,
-        geocode: ''+foundSearch.latitude+','+foundSearch.longitude+','+foundSearch.radius+foundSearch.radiusUnit.toLowerCase()
+        geocode: ''+foundSearch.latitude+','+foundSearch.longitude+','+foundSearch.radius+foundSearch.radiusUnit.toLowerCase(),
+        access_token: userInfo.twitter_token,
+        access_token_secret: userInfo.twitter_tokenSecret
       }
       // calling the twitter api with a callback and options
       twitterSearch(function(tweets) {
