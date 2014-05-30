@@ -1,15 +1,34 @@
 .row
-  .col-xs-5
+  .col-xs-12.col-sm-5
     h1 {{searchId}}
+    h3(ng-show="!results.returned") Loading Tweets...
     tabset
       tab
-        tab-heading GeoTweets
-          span.badge.pull-right {{results.tweets.length}}
-        .tweet(ng-repeat="tweet in results.tweets")
+        tab-heading GeoTweets 
+          span.badge {{results.geoTweets.length}}
+        .tweet(ng-repeat="tweet in results.geoTweets")
           h5 {{tweet.text}}
       tab
-        tab-heading All tweets in Area
-          span.badge.pull-right {{results.tweets.length}}
+        tab-heading All tweets in Area 
+          span.badge {{results.tweets.length}}
         h5 This means it switched!
         .tweet(ng-repeat="tweet in results.tweets")
           h5 {{tweet.text}}
+  .col-xs-12.col-sm-7
+    //
+      div(ng-repeat='marker in myMarkers', ui-map-marker='myMarkers[$index]', ui-event='{"map-click": "openMarkerInfo(marker)"}')
+      div(ui-map-info-window='myInfoWindow')
+        h1 Marker
+        | Lat:
+        input(ng-model='currentMarkerLat')
+        | , Lng:
+        input(ng-model='currentMarkerLng')
+        a(ng-click='setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)') Set Position
+      section id="map"
+        div(ui-map="myMap", ui-options="mapOptions", class="map-canvas")
+      ul
+        li(ng-repeat='marker in myMarkers')
+          a(ng-click='myMap.panTo(marker.getPosition())') Pan to Marker {{$index}}
+
+
+

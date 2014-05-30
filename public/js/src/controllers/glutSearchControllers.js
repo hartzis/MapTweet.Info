@@ -11,7 +11,7 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         $scope.search = {};
         $scope.search.location = '';
         $scope.search.radiusUnit = 'Km';
-        $scope.search.useCurrentLocation = 'Use My Location'
+        $scope.search.useCurrentLocation = 'Use My Current Location'
         $scope.search.usedCurrentLocation = false;
 
         // set search radius unit type
@@ -32,7 +32,7 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         };
         // retrieve users current lat/lng if possible
         $scope.getCurrentLocation = function() {
-          var currentLocation = factoryLatLng.getCurrentLocation(function(currentLocation) {
+          factoryLatLng.getCurrentLocation(function(currentLocation) {
             if (currentLocation.notSupported){
               $scope.search.useCurrentLocation = 'Unable to use My Location'
             } else {

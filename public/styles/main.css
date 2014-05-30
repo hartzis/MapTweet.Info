@@ -6,6 +6,27 @@ body {
 .radius-unit {
   padding: 0 0;
 }
+.radius-unit button{
+  width: 100%;
+  border-radius: 0;
+}
+.nav-tabs>li {
+  cursor: pointer;
+}
+.nav-tabs>li.active>a {
+  background-color: #eee;
+}
+.nav-tabs>li.active>a:hover {
+  background-color: #eee;
+}
+.tab-content>.active {
+  background-color: #eee;
+}
+
+/* Map CSS */
+.map-canvas { 
+  height: 400px; 
+}
 
 /*
  * Glyph refresh placement

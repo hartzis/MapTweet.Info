@@ -14,6 +14,7 @@ html(lang="en")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
     // custom css
     link(rel="stylesheet", href="styles/main.css")
+    script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ak6xOdL_E2nLh8Y527YroGYoGk_J420&sensor=FALSE")
   body(ng-app="glutApp")
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container-fluid
@@ -25,11 +26,13 @@ html(lang="en")
             span.icon-bar
           a.navbar-brand(href="#") Globally Look Up Tweets
         .collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right        
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="/") Search 
+                span.glyphicon.glyphicon-search       
             li: a(href="#") About
-          form.navbar-form.navbar-right(role='search')
-            button.btn.btn-primary(type='button') Search 
-              span.glyphicon.glyphicon-search
+            li: a(href="#") Sign Out 
+              span.glyphicon.glyphicon-remove
 
     // angular inject views
     .container(ng-view="")
@@ -44,8 +47,9 @@ html(lang="en")
     script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-route.min.js")
     // bootstrap angular directives
     script(src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js")
-
-    // script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ak6xOdL_E2nLh8Y527YroGYoGk_J420&sensor=FALSE")
+    // angular ui map dependencies
+    script(src="//rawgithub.com/angular-ui/ui-utils/master/modules/event/event.js")
+    script(src="//angular-ui.github.io/ui-map/dist/ui-map.min.js")
 
     // load angular app
     script(src="js/min/app.min.js")

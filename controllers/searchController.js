@@ -61,8 +61,8 @@ var twitterSearch = function(cb, options) {
     if (err){
       console.log('err-', err);
     }
-    console.log('response-', response);
-    console.log('tweets returned-', data);
+    // console.log('response-', response);
+    // console.log('tweets returned-', data.statuses);
     cb(data);
   })
 
@@ -76,33 +76,67 @@ var searchController = {
 
     // save the search and return id
     var theGeoSearch = req.body;
-    console.log('attempting to begin save search-', theGeoSearch);
     createAndSaveGeoSearch(theGeoSearch, function(err, savedSearch) {
       if (err){
         console.log('error saving');
         res.send(500, 'error saving saving/permforming search');
         return;
       }
-      console.log('sending back after save-', savedSearch)
       res.send(savedSearch);
     })
   },
   // perform twitter api search route
   getSearch: function(req, res) {
+    // get search id
     var searchId = req.query.searchId;
-    console.log('req query searchId-', searchId);
+    // find requested search by id
     findGeoSearch(searchId, function(foundSearch) {
       // setup twitter api search params
       var options = {
         query: foundSearch.query,
         geocode: ''+foundSearch.latitude+','+foundSearch.longitude+','+foundSearch.radius+foundSearch.radiusUnit.toLowerCase()
       }
-      console.log('submitting twitter api call with these options-', options);
+      // calling the twitter api with a callback and options
       twitterSearch(function(tweets) {
-        res.send(tweets)
+        // clean up tweets before sending them out
+        var cleanedTweets = tweets.statuses.map(function(tweet) {
+          if (tweet.geo){
+            var geo = tweet.geo.coordinates;
+          } else if (tweet.coordinates) {
+            var geo = [tweet.coordinates.coordinates[1], tweet.coordinates.coordinates[0]];
+          }
+          if (tweet.entities.media){
+            var media = tweet.entities.media
+          }
+          return {
+            text: tweet.text,
+            created_at: tweet.created_at,
+            geo: geo || null,
+            id_str: tweet.id_str,
+            entities: {
+              media: media || null
+            },
+            user: {
+              geo_enabled: tweet.user.geo_enabled,
+              profile_image_url: tweet.user.profile_image_url,
+              name: tweet.user.name,
+              screen_name: tweet.user.screen_name,
+              id_str: tweet.user.id_str,
+              retweeted: tweet.retweeted,
+              retweet_count: tweet.retweet_count
+            }
+          }
+        })
+        var newTweets = {
+          statuses: cleanedTweets,
+          search_metadata: tweets.search_metadata
+        }
+
+        res.send(newTweets)
       }, options);
     });
   }
 }
 
+//export object
 module.exports = searchController;
