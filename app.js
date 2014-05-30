@@ -22,7 +22,7 @@ var passport = require('passport');
 var passportConfig = require('./config/passport');
 
 // Connect to the database
-var mongoDatabase = process.env.MongoDB || 'mongodb://localhost/glut';
+var mongoDatabase = process.env.MONGOHQ_URL || 'mongodb://localhost/glut';
 mongoose.connect(mongoDatabase);
 
 var app = express();
@@ -36,7 +36,7 @@ app.use(bodyParser());
 app.use(cookieParser());
 // Initialize the express session. Needs to be given a secret property
 app.use(session({
-    secret: conf.secret
+    secret: conf.secret || process.env.secret
 }));
 // Hook in passport to the middleware chain
 app.use(passport.initialize());
