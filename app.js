@@ -6,6 +6,20 @@ var mongoose = require('mongoose');
 // Connect to the database
 mongoose.connect('mongodb://localhost/glut');
 
+// Express Session allows us to use Cookies to keep track of
+// a user across multiple pages. We also need to be able to load
+// those cookies using the cookie parser
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+// Load in the base passport library so we can inject its hooks
+// into express middleware.
+var passport = require('passport');
+
+// Load in our passport configuration that decides how passport
+// actually runs and authenticates
+var passportConfig = require('./config/passport');
+
 var app = express();
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
@@ -22,8 +36,20 @@ var locationController = require('./controllers/locationController');
 // and twitter api search controller 
 var searchController = require('./controllers/searchController');
 
+app.get('/auth/login', function(req, res) {
+  // if not logged in load welcome/sign-in page
+  res.render('welcome');
+});
+
+// ***** IMPORTANT ***** //
+// By including this middleware (defined in our config/passport.js module.exports),
+// We can prevent unauthorized access to any route handler defined after this call
+// to .use()
+app.use(passportConfig.ensureAuthenticated);
+
 app.get('/', function(req, res) {
-	res.render('index');
+  // if user logged in go to index
+  res.render('index');
 });
 
 app.get('/partials/:name', angularRoutes.partials);

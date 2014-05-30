@@ -33,10 +33,10 @@ var findGeoSearch = function(searchId, cb) {
 var twitterSearch = function(cb, options) {
 
   var T = new Twit({
-    consumer_key:         conf.twitterApiKey
-  , consumer_secret:      conf.twitterApiSecret
-  , access_token:         conf.myTwitterToken
-  , access_token_secret:  conf.myTwitterTokenSecret
+    consumer_key:         conf.twitter.ApiKey
+  , consumer_secret:      conf.twitter.ApiSecret
+  , access_token:         conf.twitter.myTwitterToken
+  , access_token_secret:  conf.twitter.myTwitterTokenSecret
   });
 
   var query = options.query || '';

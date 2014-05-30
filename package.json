@@ -4,7 +4,11 @@
     "jade": "1.x",
     "body-parser": "1.x",
     "mongoose": "^3.8.11",
-    "twit": "^1.1.15"
+    "twit": "^1.1.15",
+    "passport": "^0.2.0",
+    "passport-twitter": "^1.0.2",
+    "cookie-parser": "^1.1.0",
+    "express-session": "^1.2.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

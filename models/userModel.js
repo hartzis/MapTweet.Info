@@ -24,6 +24,14 @@ var userSchema = mongoose.Schema({
     required: true,
     unique: true
   },
+  twitter_token:{
+    type: String,
+    required: true
+  },
+  twitter_tokenSecret: {
+    type: String,
+    required: true
+  },
   twitter: {}
 })
 
@@ -31,7 +39,7 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('user', userSchema);
 
 // find user, if not found create a new user
-var findOrCreate = function(profile, cb) {
+var findOrCreate = function(token, tokenSecret, profile, cb) {
     console.log('trying to find or create new twitter user-', profile.username, profile.id);
     // try to find user
     twitterUser.findOne({
@@ -40,7 +48,7 @@ var findOrCreate = function(profile, cb) {
         if (err) console.log('error finding-', err);
         if (user) {
             console.log('found user-', user.screen_name, user.twitter.id_str, )
-            User.update(user.twitter_id, {$set:{twitter:profile._json}}, function(err, user) {
+            User.update(user.twitter_id, {$set:{twitter_token: token, twitter_tokenSecret: tokenSecret, twitter:profile._json}}, function(err, user) {
               if (err){
                 console.log('error updating user info-', err);
                 cb(err, user);
@@ -56,6 +64,8 @@ var findOrCreate = function(profile, cb) {
             newUser.twitter_id = profile.id;
             newUser.user_name = profile.displayName || '';
             newUser.screen_name = profile.username || '';
+            newUser.twitter_token = token;
+            newUser.twitter_tokenSecret = tokenSecret;
             newUser.twitter = profile._json;
 
             // for (var key in User.schema.paths.twitter){
