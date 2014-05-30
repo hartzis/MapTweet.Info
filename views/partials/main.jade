@@ -9,24 +9,27 @@
           input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off")
           i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
     .row
-      .col-xs-12.text-center
+      .col-xs-5
         button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.location)") Get Lat/Lng 
+          span.glyphicon.glyphicon-globe
+      .col-xs-2
+        p Or
+      .col-xs-5
+        button(type="button", ng-click="getCurrentLocation()").btn.btn-sm.btn-primary {{search.useCurrentLocation}} 
           span.glyphicon.glyphicon-globe
     .row
       .col-xs-12
         form(name="searchForm")
           .row
-            .col-xs-6
+            .col-xs-5
               input.form-control(type="text", name="lat", ng-model="search.latitude", required="", placeholder="Latitude", disabled="disabled")
-            .col-xs-6
+            .col-xs-2
+              h3 /
+            .col-xs-5
               input.form-control(type="text", name="lng", ng-model="search.longitude", required="", placeholder="Longitude", disabled="disabled")
-          .row
-            .col-xs-12
-              button(type="button", ng-click="getCurrentLocation()").btn.btn-sm.btn-primary {{search.useCurrentLocation}} 
-                span.glyphicon.glyphicon-globe
           .input-group
             span.input-group-addon Radius:
-            input.form-control(type='text', placeholder="Ex:'5'" ng-model="search.radius")
+            input.form-control(type='text', required="", placeholder="Ex:'5'", ng-model="search.radius")
             .input-group-btn
               button.btn.btn-default(tabindex='-1', type='button', disabled="disabled") {{search.radiusUnit}}
               button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')

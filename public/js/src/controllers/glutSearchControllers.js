@@ -10,6 +10,7 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         // init settings
         $scope.search = {};
         $scope.search.location = '';
+        $scope.search.radius = '10'
         $scope.search.radiusUnit = 'Km';
         $scope.search.useCurrentLocation = 'Use My Current Location'
         $scope.search.usedCurrentLocation = false;
