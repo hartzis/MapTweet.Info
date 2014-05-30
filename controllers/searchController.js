@@ -90,9 +90,11 @@ var searchController = {
     // find requested search by id
     findGeoSearch(searchId, function(foundSearch) {
       // save search to user's searches
+      console.log('about to save search to user');
       // User.User.update({_id: userInfo.id}, {$set{geo_searches: {}}})
-      User.User.findByIdAndUpdate(userInfo.id,{$push:{"geo-searches":foundSearch}}, function(err, savedSearch) {
+      User.User.findByIdAndUpdate(userInfo.id,{$addToSet:{"geo_searches":foundSearch._id}}, function(err, updatedUser) {
         if (err) console.log('error saving search to user');
+        console.log('search saved-', updatedUser);
       })
       // setup twitter api search params and get user token and token secret
       var options = {
