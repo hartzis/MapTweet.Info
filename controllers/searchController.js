@@ -10,12 +10,9 @@ var conf = require('../conf.js');
 // create and save geo search then perform cb
 var createAndSaveGeoSearch = function(theGeoSearch, cb) {
   var newGeoSearch = new searchModel.GeoSearch;
-  // newGeoSearch.location = theGeoSearch.location;
-  // newGeoSearch.latitude = theGeoSearch.latitude;
   for (var key in theGeoSearch){
     newGeoSearch[key] = theGeoSearch[key];
   };
-  console.log('about to save-', newGeoSearch);
   newGeoSearch.save(function(err, savedSearch) {
     console.log('new GeoSearch saved-', savedSearch);
     cb(err, savedSearch)
@@ -24,13 +21,10 @@ var createAndSaveGeoSearch = function(theGeoSearch, cb) {
 
 // find saved search then perform cb
 var findGeoSearch = function(searchId, cb) {
-  console.log('finding search id-', searchId);
-
   searchModel.GeoSearch.findById(searchId, function(err, foundSearch) {
     if (err){
       console.log('error happened-', err);
     }
-    console.log('found this search-', foundSearch);
     cb(foundSearch)
   })
 }

@@ -15,20 +15,18 @@
         .tweet(ng-repeat="tweet in results.tweets")
           h5 {{tweet.text}}
   .col-xs-12.col-sm-7
-    //
-      div(ng-repeat='marker in myMarkers', ui-map-marker='myMarkers[$index]', ui-event='{"map-click": "openMarkerInfo(marker)"}')
-      div(ui-map-info-window='myInfoWindow')
-        h1 Marker
-        | Lat:
-        input(ng-model='currentMarkerLat')
-        | , Lng:
-        input(ng-model='currentMarkerLng')
-        a(ng-click='setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)') Set Position
-      section id="map"
-        div(ui-map="myMap", ui-options="mapOptions", class="map-canvas")
-      ul
-        li(ng-repeat='marker in myMarkers')
-          a(ng-click='myMap.panTo(marker.getPosition())') Pan to Marker {{$index}}
+    div(ng-repeat='marker in myMarkers', ui-map-marker='myMarkers[$index]', ui-event='{"map-click": "openMarkerInfo(marker)"}')
+    div(ui-map-info-window='myInfoWindow')
+      h5 Marker
+      | Lat:
+      input(ng-model='currentMarkerLat')
+      | , Lng:
+      input(ng-model='currentMarkerLng')
+    section
+      div(ui-map="myMap", ui-options="mapOptions", class="map-canvas", ui-event="{'map-click': 'addMarker($event, $params)'}")
+    ul
+      li(ng-repeat='marker in myMarkers')
+        a(ng-click='panToOpenInfo(marker)') Pan to Marker {{$index}}
 
 
 

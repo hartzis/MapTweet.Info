@@ -25,7 +25,9 @@ body {
 
 /* Map CSS */
 .map-canvas { 
-  height: 400px; 
+  height: 500px;
+  /*border: 2px solid #eee;*/
+  /*margin: 5px;*/
 }
 
 /*

@@ -25,10 +25,40 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
         // $scope.$apply();
       })
 
+    // load google maps api default options
     $scope.mapOptions = {
-      center: new google.maps.LatLng(35.784, -78.670),
-      zoom: 15,
+      center: new google.maps.LatLng(20,-30),
+      zoom: 2,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-}])
+    //ui-map demo stuff
+    $scope.myMarkers = [];
+
+    $scope.addMarker = function($event, $params) {
+      $scope.myMarkers.push(new google.maps.Marker({
+        map: $scope.myMap,
+        position: $params[0].latLng
+      }));
+    };
+
+    $scope.openMarkerInfo = function(marker) {
+      $scope.currentMarker = marker;
+      $scope.currentMarkerLat = marker.getPosition().lat();
+      $scope.currentMarkerLng = marker.getPosition().lng();
+      $scope.myInfoWindow.open($scope.myMap, marker);
+    };
+     
+    $scope.setMarkerPosition = function(marker, lat, lng) {
+      marker.setPosition(new google.maps.LatLng(lat, lng));
+    };
+
+    $scope.panToOpenInfo = function(marker) {
+      $scope.myMap.panTo(marker.getPosition());
+      $scope.currentMarker = marker;
+      $scope.currentMarkerLat = marker.getPosition().lat();
+      $scope.currentMarkerLng = marker.getPosition().lng();
+      $scope.myInfoWindow.open($scope.myMap, marker);
+    }
+
+}]);

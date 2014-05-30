@@ -14,8 +14,7 @@ html(lang="en")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
     // custom css
     link(rel="stylesheet", href="styles/main.css")
-    script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ak6xOdL_E2nLh8Y527YroGYoGk_J420&sensor=FALSE")
-  body(ng-app="glutApp")
+  body
     .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
       .container-fluid
         .navbar-header
@@ -53,4 +52,6 @@ html(lang="en")
 
     // load angular app
     script(src="js/min/app.min.js")
+    // load google maps api
+    script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA8ak6xOdL_E2nLh8Y527YroGYoGk_J420&sensor=FALSE&callback=onGoogleReady")
 
