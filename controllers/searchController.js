@@ -6,8 +6,10 @@ var User = require('../models/userModel')
 // twitter api node module
 var Twit = require('twit');
 
-// load required api keys/secrets
-var conf = require('../conf.js')  || 'live';
+// load conf data
+if (!process.env) {
+var conf = require('./conf.js');
+}
 
 // create and save geo search then perform cb
 var createAndSaveGeoSearch = function(theGeoSearch, cb) {

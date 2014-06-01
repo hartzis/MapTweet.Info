@@ -2,7 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 // load conf data
-var conf = require('./conf.js') || 'live';
+if (!process.env) {
+var conf = require('./conf.js');
+}
 
 // mongodb database persistence via mongoose
 var mongoose = require('mongoose');

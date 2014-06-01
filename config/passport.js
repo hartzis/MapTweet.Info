@@ -5,8 +5,10 @@ var TwitterStrategy = require('passport-twitter');
 // inlude user model
 var User = require('../models/userModel');
 
-// load api keys
-var conf = require('../conf.js') || 'live';
+// load conf data
+if (!process.env) {
+var conf = require('./conf.js');
+}
 
 // serialize and deserialize by mongo db user id
 passport.serializeUser(function(user, done) {

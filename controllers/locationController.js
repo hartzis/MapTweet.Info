@@ -1,4 +1,7 @@
-var conf = require('../conf.js')  || 'live';
+// load conf data
+if (!process.env) {
+var conf = require('./conf.js');
+}
 
 var https = require('https');
 
