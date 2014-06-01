@@ -1,11 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+var dev = false;
 // load conf data
 if (!process.env) {
-var conf = require('./conf.js');
+  dev = true;
+  var conf = require('./conf.js');
 }
-
 // mongodb database persistence via mongoose
 var mongoose = require('mongoose');
 
@@ -37,8 +38,9 @@ app.use(bodyParser());
 // use them later
 app.use(cookieParser());
 // Initialize the express session. Needs to be given a secret property
+var theSecret = dev ? conf.secret : process.env.secret;
 app.use(session({
-    secret: conf.secret || process.env.secret
+    secret: theSecret
 }));
 // Hook in passport to the middleware chain
 app.use(passport.initialize());

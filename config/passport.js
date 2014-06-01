@@ -6,8 +6,10 @@ var TwitterStrategy = require('passport-twitter');
 var User = require('../models/userModel');
 
 // load conf data
+var dev = false;
 if (!process.env) {
-var conf = require('./conf.js');
+  var dev = true;
+  var conf = require('./conf.js');
 }
 
 // serialize and deserialize by mongo db user id
@@ -24,9 +26,9 @@ passport.deserializeUser(function(id, done) {
 // make the twitter strategy
 
 var twitterStrategy = new TwitterStrategy({
-        consumerKey: conf.twitter.ApiKey || process.env.twitterApiKey,
-        consumerSecret: conf.twitter.ApiSecret || process.env.twitterApiSecret,
-        callbackURL: conf.twitter.callbackURL || process.env.twitterCallbackURL
+        consumerKey: dev ? conf.twitter.ApiKey : process.env.twitterApiKey,
+        consumerSecret: dev ? conf.twitter.ApiSecret : process.env.twitterApiSecret,
+        callbackURL: dev ? conf.twitter.callbackURL : process.env.twitterCallbackURL
     },
     function(token, tokenSecret, profile, done) {
         console.log('token-', token, 'tokenSecret-', tokenSecret, 'profile-', profile.username, profile.id);

@@ -7,8 +7,10 @@ var User = require('../models/userModel')
 var Twit = require('twit');
 
 // load conf data
+var dev = false;
 if (!process.env) {
-var conf = require('./conf.js');
+  var dev = true;
+  var conf = require('./conf.js');
 }
 
 // create and save geo search then perform cb
@@ -37,8 +39,8 @@ var findGeoSearch = function(searchId, cb) {
 var twitterSearch = function(cb, options) {
 
   var T = new Twit({
-    consumer_key:         conf.twitter.ApiKey || process.env.twitterApiKey
-  , consumer_secret:      conf.twitter.ApiSecret || process.env.twitterApiSecret
+    consumer_key:         dev ? conf.twitter.ApiKey : process.env.twitterApiKey
+  , consumer_secret:      dev ? conf.twitter.ApiSecret : process.env.twitterApiSecret
   , access_token:         options.access_token
   , access_token_secret:  options.access_token_secret
   });
