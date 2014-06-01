@@ -1,4 +1,4 @@
-var conf = require('../conf.js');
+var conf = require('../conf.js')  || 'live';
 
 var https = require('https');
 

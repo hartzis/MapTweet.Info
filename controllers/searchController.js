@@ -7,7 +7,7 @@ var User = require('../models/userModel')
 var Twit = require('twit');
 
 // load required api keys/secrets
-var conf = require('../conf.js');
+var conf = require('../conf.js')  || 'live';
 
 // create and save geo search then perform cb
 var createAndSaveGeoSearch = function(theGeoSearch, cb) {
