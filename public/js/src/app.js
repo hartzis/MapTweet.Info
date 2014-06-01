@@ -7,6 +7,7 @@ var glutApp = angular.module('glutApp', [
     'glutResultsControllers',
     'glutLatLngServices',
     'glutTwitterSearchServices',
+    'glutMapServices',
     'ui.bootstrap',
     'ui.map'
 
