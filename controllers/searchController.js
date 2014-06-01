@@ -8,9 +8,9 @@ var Twit = require('twit');
 
 // load conf data
 var dev = false;
-if (!process.env) {
+if (!process.env.MONGOHQ_URL) {
   var dev = true;
-  var conf = require('./conf.js');
+  var conf = require('../conf.js');
 }
 
 // create and save geo search then perform cb

@@ -1,7 +1,8 @@
 // load conf data
-if (!process.env) {
-  var dev = true;
-  var conf = require('./conf.js');
+var dev = false;
+if (!process.env.MONGOHQ_URL) {
+  dev = true;
+  var conf = require('../conf.js');
 }
 
 var https = require('https');
@@ -9,7 +10,7 @@ var https = require('https');
 var getLatLongFromLocation = function(location, cb) {
     //Prepares the inputted address into the search query
     var query = location.split(' ').join('+') + '&sensor=false';
-    var key = '$key=' + conf.googleApiKey || process.env.googleApiKey;
+    var key = '$key=' + dev ? conf.googleApiKey : process.env.googleApiKey;
     var options = {
         host: 'maps.googleapis.com',
         path: '/maps/api/geocode/json?address=' + query + key
