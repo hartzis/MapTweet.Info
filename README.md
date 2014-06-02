@@ -21,3 +21,6 @@ This web application allows you to search the twitter api for tweets at a given 
 ----
 ## libraries and such
 * [angularjs](https://angularjs.org/)
+* [UI.map](http://angular-ui.github.io/ui-map/)
+* [UI Bootstrap](http://angular-ui.github.io/bootstrap/)
+* [Twit](https://www.npmjs.org/package/twit)
