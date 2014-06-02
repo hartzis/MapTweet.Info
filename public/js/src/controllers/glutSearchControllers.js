@@ -45,6 +45,13 @@ glutSearchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryL
             if (currentLocation.notSupported){
               $scope.search.useCurrentLocation = 'Unable to use My Location'
             } else {
+              // reverse geocode to get location
+              factoryLatLng.reverseGeocode(currentLocation.latitude, currentLocation.longitude,
+                function(location) {
+                  $scope.search.location = location;
+                  $scope.$apply();
+                });
+              // set $scope elements
               $scope.search.latitude = currentLocation.latitude;
               $scope.search.longitude = currentLocation.longitude;
               $scope.search.usedCurrentLocation = true;

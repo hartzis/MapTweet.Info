@@ -1,5 +1,5 @@
 .row.text-center.search-window
-  .col-xs-12.col-sm-7.col-sm-offset-2.main-columns
+  .col-xs-12.col-sm-7.col-sm-offset-2.col-md-6.col-md-offset-3.main-columns
     .row
       .col-xs-12
         h3 Search for Tweets by Location
@@ -14,8 +14,7 @@
     .row
       .col-xs-12.text-center
         p Or
-        button(type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc").btn.btn-sm.btn-primary {{search.useCurrentLocation}} 
-          span.glyphicon.glyphicon-globe
+        button(type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc").btn.btn-sm.btn-primary {{search.useCurrentLocation}}
     hr
     .row
       .col-xs-12
@@ -51,4 +50,5 @@
 
     .row
       .col-xs-12.text-center
-        button.btn.btn-sm.btn-primary(ng-href="search/12345", ng-disabled="searchForm.$invalid", ng-click="submitSearch()") Search Twitter
+        button.btn.btn-sm.btn-primary(ng-href="search/12345", ng-disabled="searchForm.$invalid", ng-click="submitSearch()") Search Twitter 
+          span.glyphicon.glyphicon-globe

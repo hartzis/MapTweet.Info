@@ -1,4 +1,27 @@
 .row
   .col-xs-12.col-sm-8.col-sm-offset-2
-    h3 History
-    p(ng-repeat="search in searches") Location: {{search.location}}
+    h3 Search History
+    .row
+      .col-xs-4
+        img(ng-src="{{user.twitter.profile_image_url}}", alt="").img-responsive
+      .col-xs-8
+        h5 @{{user.screen_name}}
+    .row
+      .col-xs-12.col-sm-10.col-sm-offset-1
+        .input-group
+            span.input-group-addon Filter:
+            input.form-control(type='text', ng-filter="")
+    .row(ng-repeat="search in user.geo_searches")
+      .col-xs-12
+        .panel.panel-primary
+          .panel-heading
+            button(type="button", ng-click="performSearch(search)").btn.btn-xs.btn-success {{search._id}} 
+              span.glyphicon.glyphicon-globe
+            button(type="button", ng-click="removeSearch(search)").btn.btn-xs.btn-danger.pull-right
+              span.glyphicon.glyphicon-remove              
+          .panel-body
+            span Location: {{search.location}}
+          .panel-footer 
+            button(type="button", ng-click="copyToSearch(search)").btn.btn-xs.btn-primary Copy to Search 
+              span.glyphicon.glyphicon-log-in
+          

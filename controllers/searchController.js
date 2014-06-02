@@ -76,13 +76,16 @@ var searchController = {
       .exec(function(err, user) {
         // console.log('user with populate searches-', user);
         // reformat
-        res.send(user);
+        var userHistory = {
+          id: user._id,
+          screen_name: user.screen_name,
+          twitter: user.twitter,
+          geo_searches: user.geo_searches
+        }
+        res.send(userHistory);
       })
   },
   postSearch: function(req, res) {
-    // check if first if user is authenticated
-
-
     // save the search and return id
     var theGeoSearch = req.body;
     createAndSaveGeoSearch(theGeoSearch, function(err, savedSearch) {

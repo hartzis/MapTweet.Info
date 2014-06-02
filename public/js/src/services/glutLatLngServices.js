@@ -3,16 +3,19 @@ var glutLatLngServices = angular.module('glutLatLngServices', []);
 
 glutLatLngServices.factory('factoryLatLng', ['$http', function($http) {
   return {
-    // retrieve lat/lng from server to save users requests
-    // getLatLng: function(location) {
-    //   return $http.get('/api/getLatLng', {
-    //     params: {
-    //       location: location
-    //     }
-    //   }).then(function(res) {
-    //     return res.data;
-    //   })  
-    // },
+    reverseGeocode: function(lat, lng, cb) {
+      var geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(+lat,+lng);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]){
+            cb(results[1].formatted_address)
+            return;
+          }
+          cb(results[0].formatted_address)
+        }
+      })
+    },
     getLatLng: function(location) {
       return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
         params: {

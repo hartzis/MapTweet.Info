@@ -66,7 +66,7 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
       }).then(function() {
         if ($scope.results.geoTweets.length == 0){
           $scope.myMap.setCenter({lat: +$scope.search.latitude, lng: +$scope.search.longitude});
-          $scope.myMap.setZoom(15);
+          $scope.myMap.setZoom(14);
           $scope.results.returned = true;
         } else {
           $scope.results.returned = true;
@@ -77,8 +77,8 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
           });
           $scope.myMap.setCenter(allMarkerBounds.getCenter());
           $scope.myMap.fitBounds(allMarkerBounds);
-          if ($scope.myMap.getZoom() >= 18) {
-            $scope.myMap.setZoom(17);
+          if ($scope.myMap.getZoom() >= 17) {
+            $scope.myMap.setZoom(16);
           }
         }
       });
