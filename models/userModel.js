@@ -82,7 +82,7 @@ var findOrCreate = function(token, tokenSecret, profile, cb) {
                 console.log('error saving-', err);
                 cb(err, user);
               } else {
-                console.log('this user saved-', user.screen_name);
+                // console.log('this user saved-', user.screen_name);
                 cb(err, user);
               }
             })

@@ -5,7 +5,7 @@ var glutSearchControllers = angular.module('glutSearchControllers', [])
 glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'factoryTwitterSearch',
     function($scope, factoryLatLng, factoryTwitterSearch) {
         
-        console.log('glutControllers and MainCtrl loaded');
+        // console.log('glutControllers and MainCtrl loaded');
 
         // init settings
         $scope.search = {};
@@ -14,6 +14,7 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         $scope.search.radiusUnit = 'Km';
         $scope.search.useCurrentLocation = 'Use My Current Location'
         $scope.search.usedCurrentLocation = false;
+        $scope.search.retrievingCurrentLoc = false;
 
         // set search radius unit type
         $scope.changeRadiusUnit = function(unit) {
@@ -23,8 +24,8 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         $scope.getGeo = function(location) {
           factoryLatLng.getLatLng(location)
             .then(function (data) {
-              $scope.search.latitude = data.latitude;
-              $scope.search.longitude = data.longitude;
+              $scope.search.latitude = data.lat;
+              $scope.search.longitude = data.lng;
             });
         };
         // live search for location from google geocode api
@@ -33,6 +34,8 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         };
         // retrieve users current lat/lng if possible
         $scope.getCurrentLocation = function() {
+          $scope.search.retrievingCurrentLoc = true;
+          $scope.search.useCurrentLocation = "Retrieving Current Location...";
           factoryLatLng.getCurrentLocation(function(currentLocation) {
             if (currentLocation.notSupported){
               $scope.search.useCurrentLocation = 'Unable to use My Location'
@@ -40,6 +43,8 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
               $scope.search.latitude = currentLocation.latitude;
               $scope.search.longitude = currentLocation.longitude;
               $scope.search.usedCurrentLocation = true;
+              $scope.search.retrievingCurrentLoc = false;
+              $scope.search.useCurrentLocation = 'Use My Current Location';
               // "refresh" scope
               $scope.$apply();
             }

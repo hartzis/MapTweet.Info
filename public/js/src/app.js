@@ -32,6 +32,6 @@ glutApp.config(['$routeProvider',
 ]);
 
 function onGoogleReady() {
-  console.log('google maps ready - loading angular glutApp');
+  // console.log('google maps ready - loading angular glutApp');
   angular.bootstrap(document.body, ['glutApp']);
 }

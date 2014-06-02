@@ -1,32 +1,34 @@
 .row.text-center.search-window
-  .col-xs-12.col-sm-6.col-sm-offset-3.main-columns
+  .col-xs-12.col-sm-7.col-sm-offset-2.main-columns
     .row
       .col-xs-12
         h3 Search for Tweets by Location
     .row
       .col-xs-12.text-left
         form(name="locationInput")
-          input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off")
-          i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
+          .input-group
+            input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off", autofocus)
+            i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
+            .input-group-btn
+              button(ng-disabled="locationInput.$invalid", type="button", ng-click="getGeo(search.location)").btn.btn-primary Retrieve Lat/Lng
     .row
-      .col-xs-5
-        button.btn.btn-sm.btn-primary(ng-href="#", ng-disabled="locationInput.$invalid", ng-click="getGeo(search.location)") Get Lat/Lng 
-          span.glyphicon.glyphicon-globe
-      .col-xs-2
+      .col-xs-12.text-center
         p Or
-      .col-xs-5
-        button(type="button", ng-click="getCurrentLocation()").btn.btn-sm.btn-primary {{search.useCurrentLocation}} 
+        button(type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc").btn.btn-sm.btn-primary {{search.useCurrentLocation}} 
           span.glyphicon.glyphicon-globe
+    hr
     .row
       .col-xs-12
         form(name="searchForm")
           .row
-            .col-xs-5
-              input.form-control(type="text", name="lat", ng-model="search.latitude", required="", placeholder="Latitude", disabled="disabled")
-            .col-xs-2
-              h3 /
-            .col-xs-5
-              input.form-control(type="text", name="lng", ng-model="search.longitude", required="", placeholder="Longitude", disabled="disabled")
+            .col-xs-6
+              .form-group
+                label(for="latitude") Latitude:
+                input#latitude.form-control(type="text", name="lat", ng-model="search.latitude", required="", disabled="disabled")
+            .col-xs-6
+              .form-group
+                label(for="longitude") Longitude:
+                input#longitude.form-control(type="text", name="lng", ng-model="search.longitude", required="", disabled="disabled")
           .input-group
             span.input-group-addon Radius:
             input.form-control(type='text', required="", placeholder="Ex:'5'", ng-model="search.radius")

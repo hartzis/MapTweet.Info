@@ -10,7 +10,8 @@ glutMapServices.factory('markerFactory', [
     createAndAddMarker: function(lat, lng) {
       var newMarker = new google.maps.Marker({
         map: myMap,
-        position: new google.maps.LatLng(lat, lng)
+        position: new google.maps.LatLng(lat, lng),
+        icon: '../../img/bird_blue_32.png'
       });
       return newMarker;
     },
@@ -18,23 +19,5 @@ glutMapServices.factory('markerFactory', [
       return myMap;
     }
 
-    // openMarkerInfo: function(marker) {
-    //   $scope.currentMarker = marker;
-    //   $scope.currentMarkerLat = marker.getPosition().lat();
-    //   $scope.currentMarkerLng = marker.getPosition().lng();
-    //   $scope.myInfoWindow.open($scope.myMap, marker);
-    // },
-     
-    // setMarkerPosition: function(marker, lat, lng) {
-    //   marker.setPosition(new google.maps.LatLng(lat, lng));
-    // },
-
-    // panToOpenInfo: function(marker, map) {
-    //   $scope.myMap.panTo(marker.getPosition());
-    //   $scope.currentMarker = marker;
-    //   $scope.currentMarkerLat = marker.getPosition().lat();
-    //   $scope.currentMarkerLng = marker.getPosition().lng();
-    //   $scope.myInfoWindow.open($scope.myMap, marker);
-    // }
   }
 }])

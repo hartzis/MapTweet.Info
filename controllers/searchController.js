@@ -20,7 +20,7 @@ var createAndSaveGeoSearch = function(theGeoSearch, cb) {
     newGeoSearch[key] = theGeoSearch[key];
   };
   newGeoSearch.save(function(err, savedSearch) {
-    console.log('new GeoSearch saved-', savedSearch);
+    // console.log('new GeoSearch saved-', savedSearch);
     cb(err, savedSearch)
   })
 };
@@ -51,7 +51,7 @@ var twitterSearch = function(cb, options) {
   var until = options.until || '';
   var since_id = options.since_id || '';
 
-  console.log('about to perform twitter api call-', query, geocode, count);
+  // console.log('about to perform twitter api call-', query, geocode, count);
 
   T.get('search/tweets', {
     q: query,
@@ -94,11 +94,8 @@ var searchController = {
     // find requested search by id
     findGeoSearch(searchId, function(foundSearch) {
       // save search to user's searches
-      console.log('about to save search to user');
-      // User.User.update({_id: userInfo.id}, {$set{geo_searches: {}}})
       User.User.findByIdAndUpdate(userInfo.id,{$addToSet:{"geo_searches":foundSearch._id}}, function(err, updatedUser) {
         if (err) console.log('error saving search to user');
-        console.log('search saved-', updatedUser);
       })
       // setup twitter api search params and get user token and token secret
       var options = {
