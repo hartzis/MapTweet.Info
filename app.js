@@ -49,9 +49,6 @@ app.use(passport.session());
 // setup base angular route renders
 var angularRoutes = require('./controllers/angularRoutes');
 
-// location route controllers
-var locationController = require('./controllers/locationController');
-
 // load search save/load
 // and twitter api search controller 
 var searchController = require('./controllers/searchController');
@@ -101,10 +98,8 @@ app.get('/', function(req, res) {
   });
 });
 
+// handle all angular partial routes
 app.get('/partials/:name', angularRoutes.partials);
-
-// retrieve the lat/lng of a location/address
-app.get('/api/getLatLng', locationController.getLatLng);
 
 // save search information
 app.post('/api/search', searchController.postSearch)
