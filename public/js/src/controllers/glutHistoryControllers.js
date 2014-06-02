@@ -19,7 +19,12 @@ glutHistoryControllers.controller('historyCtrl', ['$scope', 'historyFactory',
     }
 
     $scope.removeSearch = function(search) {
-      // body...
+      historyFactory.removeSearch(search._id)
+        .then(function(response) {
+          if (response === 'removed'){
+            $scope.user.geo_searches.splice($scope.user.geo_searches.indexOf(search),1);
+          }
+        })
     }
 
     // if click on 'search: id', re-peform search

@@ -26,6 +26,12 @@ glutHistoryServices.factory('historyFactory', ['$http', '$location',
       },
       removeSearch: function(searchId) {
         // remove the search from users geo_searches
+        return $http.delete('/api/search', {params: {searchId: searchId}})
+          .then(function(data) {
+            if (data.status === 200){
+              return data.data;
+            }
+          })
       }
     }
   }])

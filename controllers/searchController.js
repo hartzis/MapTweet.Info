@@ -67,6 +67,22 @@ var twitterSearch = function(cb, options) {
 
 // setup searchController object to be exported
 var searchController = {
+  removeSearch: function(req, res) {
+    // remove search id from current users geosearches
+    var userInfo = req.user;
+    var searchId = req.query.searchId;
+    console.log('attempting to remove-', searchId, 'from-', userInfo);
+    // find user and remove search by id
+    UserModel.User.findByIdAndUpdate(userInfo.id, {$pull: {"geo_searches": searchId}}, 
+      function(err, data) {
+      // console.log('returned from removal attempt-', data)
+      if (err){
+        res.send('error');
+      } else {
+        res.send('removed');
+      }
+    })
+  },
   searchHistory: function(req, res) {
     // console.log('getting search history for user-', req.user);
     var userInfo = req.user;
@@ -106,8 +122,9 @@ var searchController = {
     // find requested search by id
     findGeoSearch(searchId, function(foundSearch) {
       // save search to user's searches
-      UserModel.User.findByIdAndUpdate(userInfo.id,{$addToSet:{"geo_searches":foundSearch._id}}, function(err, updatedUser) {
-        if (err) console.log('error saving search to user');
+      UserModel.User.findByIdAndUpdate(userInfo.id,{$addToSet:{"geo_searches":foundSearch._id}}, 
+        function(err, updatedUser) {
+          if (err) console.log('error saving search to user');
       })
       // setup twitter api search params and get user token and token secret
       var options = {
