@@ -70,6 +70,17 @@ var twitterSearch = function(cb, options) {
 
 // setup searchController object to be exported
 var searchController = {
+  searchHistory: function(req, res) {
+    console.log('getting search history for user-', req.user);
+    var userInfo = req.user;
+    //find user and populate searches
+    User.User.findById(userInfo.id)
+      .populate('geo_searches', null, searchModel.GeoSearch)
+      .exec(function(err, user) {
+        console.log('user with populate searches-', user);
+        res.send(user);
+      })
+  },
   postSearch: function(req, res) {
     // check if first if user is authenticated
 
@@ -137,7 +148,8 @@ var searchController = {
         })
         var newTweets = {
           statuses: cleanedTweets,
-          search_metadata: tweets.search_metadata
+          search_metadata: tweets.search_metadata,
+          search: foundSearch
         }
 
         res.send(newTweets)

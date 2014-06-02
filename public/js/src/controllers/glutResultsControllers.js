@@ -34,14 +34,20 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
     $scope.currentMarkerInfo.user = {};
 
     $scope.searchId = $routeParams.searchId;
+    // place for returned search information
+    $scope.search = {};
 
+    // returned found tweet information
     $scope.results = {};
     $scope.results.tweets = [];
     $scope.results.geoTweets = [];
     $scope.results.returned = false;
     
+    // perform twitter search for desired location and query
     factoryTwitterSearch.getTweetsBySearchId($routeParams.searchId)
       .then(function(data) {
+        console.log('recieved-', data);
+        $scope.search = data.search;
         //set map for factory
         markerFactory.setMyMap($scope.myMap);
 
@@ -58,16 +64,22 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
         };
         // $scope.$apply();
       }).then(function() {
-        $scope.results.returned = true;
-        // pan to all geotweets
-        var allMarkerBounds = new google.maps.LatLngBounds();
-        $scope.myMarkers.forEach(function(marker) {
-          allMarkerBounds.extend(marker.getPosition());
-        });
-        $scope.myMap.setCenter(allMarkerBounds.getCenter());
-        $scope.myMap.fitBounds(allMarkerBounds);
-        if ($scope.myMap.getZoom() >= 18) {
-          $scope.myMap.setZoom(17);
+        if ($scope.results.geoTweets.length == 0){
+          $scope.myMap.setCenter({lat: +$scope.search.latitude, lng: +$scope.search.longitude});
+          $scope.myMap.setZoom(15);
+          $scope.results.returned = true;
+        } else {
+          $scope.results.returned = true;
+          // pan to all geotweets
+          var allMarkerBounds = new google.maps.LatLngBounds();
+          $scope.myMarkers.forEach(function(marker) {
+            allMarkerBounds.extend(marker.getPosition());
+          });
+          $scope.myMap.setCenter(allMarkerBounds.getCenter());
+          $scope.myMap.fitBounds(allMarkerBounds);
+          if ($scope.myMap.getZoom() >= 18) {
+            $scope.myMap.setZoom(17);
+          }
         }
       });
 

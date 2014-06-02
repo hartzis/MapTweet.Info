@@ -2,10 +2,8 @@
 
 var glutSearchControllers = angular.module('glutSearchControllers', [])
 
-glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'factoryTwitterSearch',
-    function($scope, factoryLatLng, factoryTwitterSearch) {
-        
-        // console.log('glutControllers and MainCtrl loaded');
+glutSearchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLng', 'factoryTwitterSearch',
+    function($scope, $location, factoryLatLng, factoryTwitterSearch) {
 
         // init settings
         $scope.search = {};
@@ -15,6 +13,13 @@ glutSearchControllers.controller('searchCtrl', ['$scope', 'factoryLatLng', 'fact
         $scope.search.useCurrentLocation = 'Use My Current Location'
         $scope.search.usedCurrentLocation = false;
         $scope.search.retrievingCurrentLoc = false;
+
+        // set requested search fields from query
+        for (var prop in $location.search()) {
+          if ($location.search().hasOwnProperty(prop)) {
+            $scope.search[prop] = $location.search()[prop];
+          }
+        }
 
         // set search radius unit type
         $scope.changeRadiusUnit = function(unit) {

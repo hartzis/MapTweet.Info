@@ -106,6 +106,9 @@ app.post('/api/search', searchController.postSearch)
 // perform twitter api search and return tweets
 app.get('/api/search', searchController.getSearch)
 
+// return search history for user
+app.get('/api/search/history', searchController.searchHistory)
+
 // setup for heroku
 var port = Number(process.env.PORT || 5536);
 var server = app.listen(port, function() {

@@ -5,9 +5,11 @@ var glutApp = angular.module('glutApp', [
     'ngRoute',
     'glutSearchControllers',
     'glutResultsControllers',
+    'glutHistoryControllers',
     'glutLatLngServices',
     'glutTwitterSearchServices',
     'glutMapServices',
+    'glutHistoryServices',
     'ui.bootstrap',
     'ui.map'
 
@@ -24,6 +26,10 @@ glutApp.config(['$routeProvider',
             .when('/search/:searchId', {
                 templateUrl: 'partials/searchResults',
                 controller: 'resultsCtrl'
+            })
+            .when('/history',{
+                templateUrl: 'partials/history',
+                controller: 'historyCtrl'
             })
             .otherwise({
                 redirectTo: '/'
