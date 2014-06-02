@@ -3,14 +3,10 @@ var passport = require('passport');
 var TwitterStrategy = require('passport-twitter');
 
 // inlude user model
-var User = require('../models/userModel');
+var UserModel = require('../models/userModel');
 
-// load conf data
-var dev = false;
-if (!process.env.MONGOHQ_URL) {
-  var dev = true;
-  var conf = require('../conf.js');
-}
+// include config controller
+var conf = require('./conf.js')
 
 // serialize and deserialize by mongo db user id
 passport.serializeUser(function(user, done) {
@@ -18,20 +14,20 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
-  User.User.findById(id, function(err, user) {
+  UserModel.User.findById(id, function(err, user) {
     done(err, user);
   })
 })
 
 // make the twitter strategy
 var twitterStrategy = new TwitterStrategy({
-        consumerKey: dev ? conf.twitter.ApiKey : process.env.twitterApiKey,
-        consumerSecret: dev ? conf.twitter.ApiSecret : process.env.twitterApiSecret,
-        callbackURL: dev ? conf.twitter.callbackURL : process.env.twitterCallbackURL
+        consumerKey: conf.twitter.ApiKey,
+        consumerSecret: conf.twitter.ApiSecret,
+        callbackURL: conf.twitter.callbackURL
     },
     function(token, tokenSecret, profile, done) {
         console.log('token-', token, 'tokenSecret-', tokenSecret, 'profile-', profile.username, profile.id);
-        User.findOrCreate(token, tokenSecret, profile, function(err, user) {
+        UserModel.findOrCreate(token, tokenSecret, profile, function(err, user) {
             if (err) {
                 return done(err);
             }

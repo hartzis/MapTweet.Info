@@ -1,17 +1,14 @@
 // load model to save searches
 var searchModel = require('../models/searchModel.js');
 // inlude user model
-var User = require('../models/userModel')
+var UserModel = require('../models/userModel')
 
 // twitter api node module
 var Twit = require('twit');
 
 // load conf data
-var dev = false;
-if (!process.env.MONGOHQ_URL) {
-  var dev = true;
-  var conf = require('../conf.js');
-}
+var conf = require('../config/conf.js');
+
 
 // create and save geo search then perform cb
 var createAndSaveGeoSearch = function(theGeoSearch, cb) {
@@ -39,8 +36,8 @@ var findGeoSearch = function(searchId, cb) {
 var twitterSearch = function(cb, options) {
 
   var T = new Twit({
-    consumer_key:         dev ? conf.twitter.ApiKey : process.env.twitterApiKey
-  , consumer_secret:      dev ? conf.twitter.ApiSecret : process.env.twitterApiSecret
+    consumer_key:         conf.twitter.ApiKey
+  , consumer_secret:      conf.twitter.ApiSecret
   , access_token:         options.access_token
   , access_token_secret:  options.access_token_secret
   });
@@ -71,13 +68,14 @@ var twitterSearch = function(cb, options) {
 // setup searchController object to be exported
 var searchController = {
   searchHistory: function(req, res) {
-    console.log('getting search history for user-', req.user);
+    // console.log('getting search history for user-', req.user);
     var userInfo = req.user;
     //find user and populate searches
-    User.User.findById(userInfo.id)
-      .populate('geo_searches', null, searchModel.GeoSearch)
+    UserModel.User.findById(userInfo.id)
+      .populate('geo_searches', null, 'geosearch')
       .exec(function(err, user) {
-        console.log('user with populate searches-', user);
+        // console.log('user with populate searches-', user);
+        // reformat
         res.send(user);
       })
   },
@@ -105,7 +103,7 @@ var searchController = {
     // find requested search by id
     findGeoSearch(searchId, function(foundSearch) {
       // save search to user's searches
-      User.User.findByIdAndUpdate(userInfo.id,{$addToSet:{"geo_searches":foundSearch._id}}, function(err, updatedUser) {
+      UserModel.User.findByIdAndUpdate(userInfo.id,{$addToSet:{"geo_searches":foundSearch._id}}, function(err, updatedUser) {
         if (err) console.log('error saving search to user');
       })
       // setup twitter api search params and get user token and token secret
