@@ -1,8 +1,8 @@
 'use strict';
 
-var glutSearchControllers = angular.module('glutSearchControllers', [])
+var searchControllers = angular.module('searchControllers', [])
 
-glutSearchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLng', 'factoryTwitterSearch',
+searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLng', 'factoryTwitterSearch',
     function($scope, $location, factoryLatLng, factoryTwitterSearch) {
 
         // init settings

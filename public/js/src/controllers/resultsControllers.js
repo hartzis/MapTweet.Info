@@ -1,8 +1,8 @@
 'use strict';
 
-var glutResultsControllers = angular.module('glutResultsControllers', ['ngSanitize']);
+var resultsControllers = angular.module('resultsControllers', ['ngSanitize']);
 
-glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factoryTwitterSearch', 'markerFactory',
+resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factoryTwitterSearch', 'markerFactory',
   function($scope, $routeParams, factoryTwitterSearch, markerFactory) {
 
     // console.log('loaded resultsCtrl');

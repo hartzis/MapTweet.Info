@@ -1,6 +1,6 @@
-var glutHistoryServices = angular.module('glutHistoryServices', []);
+var historyServices = angular.module('historyServices', []);
 
-glutHistoryServices.factory('historyFactory', ['$http', '$location',
+historyServices.factory('historyFactory', ['$http', '$location',
   function($http, $location) {
     return {
       retrieveSearchHistory: function() {

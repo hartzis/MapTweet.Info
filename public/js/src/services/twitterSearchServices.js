@@ -1,6 +1,6 @@
-var glutTwitterSearchServices = angular.module('glutTwitterSearchServices', []);
+var twitterSearchServices = angular.module('twitterSearchServices', []);
 
-glutTwitterSearchServices.factory('factoryTwitterSearch', ['$http', '$location',
+twitterSearchServices.factory('factoryTwitterSearch', ['$http', '$location',
   function($http, $location) {
     return {
       // send twitter search to be saved in database

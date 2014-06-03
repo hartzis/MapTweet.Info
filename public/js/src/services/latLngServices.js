@@ -1,7 +1,7 @@
 
-var glutLatLngServices = angular.module('glutLatLngServices', []);
+var latLngServices = angular.module('latLngServices', []);
 
-glutLatLngServices.factory('factoryLatLng', ['$http', function($http) {
+latLngServices.factory('factoryLatLng', ['$http', function($http) {
   return {
     reverseGeocode: function(lat, lng, cb) {
       var geocoder = new google.maps.Geocoder();

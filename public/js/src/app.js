@@ -1,22 +1,23 @@
 'use strict';
 
-var glutApp = angular.module('glutApp', [
+var mapTweetInfoApp = angular.module('mapTweetInfoApp', [
     'ngResource',
     'ngRoute',
-    'glutSearchControllers',
-    'glutResultsControllers',
-    'glutHistoryControllers',
-    'glutLatLngServices',
-    'glutTwitterSearchServices',
-    'glutMapServices',
-    'glutHistoryServices',
+    'searchControllers',
+    'resultsControllers',
+    'historyControllers',
+    'latLngServices',
+    'twitterSearchServices',
+    'mapServices',
+    'historyServices',
+    'ngEnterDirectives',
     'ui.bootstrap',
     'ui.map'
 
 ]);
 
 
-glutApp.config(['$routeProvider',
+mapTweetInfoApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -39,5 +40,5 @@ glutApp.config(['$routeProvider',
 
 function onGoogleReady() {
   // console.log('google maps ready - loading angular glutApp');
-  angular.bootstrap(document.body, ['glutApp']);
+  angular.bootstrap(document.body, ['mapTweetInfoApp']);
 }

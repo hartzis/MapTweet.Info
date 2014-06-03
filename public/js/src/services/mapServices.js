@@ -1,6 +1,6 @@
-var glutMapServices = angular.module('glutMapServices', []);
+var mapServices = angular.module('mapServices', []);
 
-glutMapServices.factory('markerFactory', [
+mapServices.factory('markerFactory', [
   function() {
     var myMap = null;
   return {

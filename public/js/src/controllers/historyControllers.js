@@ -1,6 +1,6 @@
-var glutHistoryControllers = angular.module('glutHistoryControllers', []);
+var historyControllers = angular.module('historyControllers', []);
 
-glutHistoryControllers.controller('historyCtrl', ['$scope', 'historyFactory',
+historyControllers.controller('historyCtrl', ['$scope', 'historyFactory',
   function($scope, historyFactory) {
     $scope.user = {};
 
