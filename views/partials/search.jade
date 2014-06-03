@@ -17,7 +17,7 @@
     hr
     .row
       .col-xs-12
-        form(name="searchForm", ng-submit="submitSearch()")
+        form(name="searchForm")
           .row
             .col-xs-6
               .form-group
@@ -44,10 +44,13 @@
           .row
             .col-xs-12
               h5 Twitter Search Query:
-              input.form-control(type="text", name="query", ng-model="search.query", required="", placeholder="from:jimcramer #MSFT")
+              input.form-control(type="text", name="query", ng-enter="submitSearch()", ng-model="search.query", required="", placeholder="from:jimcramer #MSFT")
               span.help-block Your Search Query - A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity.Example: @noradio.
                 a(href="https://dev.twitter.com/docs/using-search", target="_blank").btn.btn-link Search Query Format Help
+
           .row
             .col-xs-12.text-center
-              input.btn.btn-sm.btn-primary(ng-disabled="searchForm.$invalid", type="submit", value="Search Twitter") 
+              button.btn.btn-sm.btn-primary(ng-disabled="searchForm.$invalid", type="submit", ng-click="submitSearch()") 
+                span.glyphicon.glyphicon-search
+                |&nbspSearch Twitter 
           
