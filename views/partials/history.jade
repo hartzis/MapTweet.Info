@@ -5,7 +5,7 @@
       .col-xs-12.text-center
         img(ng-src="{{user.twitter.profile_image_url}}", alt="")
         h5 @{{user.screen_name}}
-    .row
+    .row.history-filter
       .col-xs-12.col-sm-10.col-sm-offset-1
         .input-group
             span.input-group-addon Filter:
@@ -30,10 +30,9 @@
               a.history-menu(ng-click="removeSearch(search)")
                 span.glyphicon.glyphicon-remove &nbsp
                 span Remove
-
-        .h4 
+        .h4.form-inline
           .label.label-info {{search.location}}
-        .h5 Search Query: 
+        .h5.form-inline Search Query: 
           .label.label-default {{search.query}}
         .h6 Latitude: 
           .label.label-default {{search.latitude}} 
@@ -41,3 +40,5 @@
           .label.label-default {{search.longitude}}
           | &nbsp&nbspRadius: 
           .label.label-default {{search.radius}} {{search.radiusUnit}}
+          | &nbsp&nbspTweet Count: 
+          .label.label-default {{search.count}}

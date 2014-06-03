@@ -50,7 +50,12 @@ hr {
 }
 .label-default {
   font-weight: 0;
-
+}
+.label {
+  font-size: 90%;
+}
+.history-filter {
+  margin-bottom: 10px
 }
 
 /* Map CSS */

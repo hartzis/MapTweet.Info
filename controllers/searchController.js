@@ -139,6 +139,7 @@ var searchController = {
       })
       // setup twitter api search params and get user token and token secret
       var options = {
+        count: foundSearch.count,
         query: foundSearch.query,
         geocode: ''+foundSearch.latitude+','+foundSearch.longitude+','+foundSearch.radius+foundSearch.radiusUnit.toLowerCase(),
         access_token: userInfo.twitter_token,

@@ -30,6 +30,10 @@ var geoSearchSchema = mongoose.Schema({
   lastSearched: {
     type: Date,
     default: Date.now
+  },
+  count: {
+    type: String,
+    default: '20'
   }
 });
 

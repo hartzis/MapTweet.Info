@@ -6,13 +6,30 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
     function($scope, $location, factoryLatLng, factoryTwitterSearch) {
 
         // init settings
+        $scope.counts = [{
+          label: '25 Tweets',
+          value: '25'
+        },{
+          label: '50 Tweets',
+          value: '50'
+        },{
+          label: '75 Tweets',
+          value: '75'
+        },{
+          label: '150 Tweets',
+          value: '150'
+        }
+        ];
         $scope.search = {};
+        $scope.search.query = '';
+        $scope.search.count = '50';
         $scope.search.location = '';
-        $scope.search.radius = '10'
+        $scope.search.radius = '25';
         $scope.search.radiusUnit = 'Km';
-        $scope.search.useCurrentLocation = 'Use My Current Location'
+        $scope.search.useCurrentLocation = 'Use My Current Location';
         $scope.search.usedCurrentLocation = false;
         $scope.search.retrievingCurrentLoc = false;
+        $scope.submittingSearch = false;
 
         // set requested search fields from query
         for (var prop in $location.search()) {
@@ -68,6 +85,7 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
         // submit geo search, saves, then returns object with id
         // if successful route user to search/:searchId to display data
         $scope.submitSearch = function () {
+            $scope.submittingSearch = true;
             factoryTwitterSearch.postTwitterSearch($scope.search)
               // .then(function (savedSearch) {
               //     console.log('saved and returned search obj-', savedSearch);
