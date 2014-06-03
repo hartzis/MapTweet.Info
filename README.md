@@ -1,8 +1,8 @@
-# Globally LookUp Tweets -GLuT
+# MapTweet.Info
 
 ----
-## What is Glut?
-[globallylut.herokuapp.com](http://globallylut.herokuapp.com)
+## What is MapTweet.Info?
+[www.maptweet.info](http://www.maptweet.info)
 
 This web application allows you to search the twitter api for tweets at a given location with a specific query. If there are geo-located tweets( tweets that have a latitude and longitude ) they will be displayed on a map.
 
