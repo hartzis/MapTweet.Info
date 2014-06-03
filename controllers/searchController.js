@@ -9,6 +9,17 @@ var Twit = require('twit');
 // load conf data
 var conf = require('../config/conf.js');
 
+//parse tweet text for links, hashtags and users
+var parseTweet = function(tweetText) {
+  var reghash, reguri, regusername;
+  reguri = /(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*))/g;
+  regusername = /([@]+([A-Za-z0-9-_]+))/g;
+  reghash = /[#]+([A-Za-z0-9-_]+)/g;
+  tweetText = tweetText.replace(reguri, "<a href='$1' target='_blank'>$1</a>");
+  tweetText = tweetText.replace(regusername, "<a href='http://twitter.com/$2' target='_blank'>$1</a>");
+  tweetText = tweetText.replace(reghash, "<a href='http://twitter.com/search?q=%23$1' target='_blank'>#$1</a>");
+  return tweetText;
+};
 
 // create and save geo search then perform cb
 var createAndSaveGeoSearch = function(theGeoSearch, cb) {
@@ -145,8 +156,9 @@ var searchController = {
           if (tweet.entities.media){
             var media = tweet.entities.media
           }
+          var tweetText = parseTweet(tweet.text);
           return {
-            text: tweet.text,
+            text: tweetText,
             created_at: tweet.created_at,
             geo: geo || null,
             id_str: tweet.id_str,
