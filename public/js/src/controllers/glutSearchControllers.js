@@ -27,11 +27,14 @@ glutSearchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryL
         };
         // send server request to get lat/lng
         $scope.getGeo = function(location) {
-          factoryLatLng.getLatLng(location)
-            .then(function (data) {
-              $scope.search.latitude = data.lat;
-              $scope.search.longitude = data.lng;
-            });
+          if (location != '') {
+            factoryLatLng.getLatLng(location)
+              .then(function (data) {
+                $scope.search.latitude = data.geo.lat;
+                $scope.search.longitude = data.geo.lng;
+                $scope.search.location = data.formattted_address;
+              });
+          }
         };
         // live search for location from google geocode api
         $scope.queryLocations = function(location) {

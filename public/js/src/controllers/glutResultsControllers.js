@@ -24,7 +24,8 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
       mapTypeControlOptions: {
           style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
           position: google.maps.ControlPosition.RIGHT_BOTTOM
-      }
+      },
+      styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]
     };
 
 
@@ -36,6 +37,9 @@ glutResultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'fac
     $scope.searchId = $routeParams.searchId;
     // place for returned search information
     $scope.search = {};
+
+    // setup filters
+    $scope.filter = {};
 
     // returned found tweet information
     $scope.results = {};

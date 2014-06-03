@@ -3,22 +3,21 @@
     .row
       .col-xs-12
         h3 Search for Tweets by Location
+        h5 Enter the location you would like to search in the world or select to use your current location.
     .row
       .col-xs-12.text-left
         form(name="locationInput")
-          .input-group
-            input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off", autofocus)
-            i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
-            .input-group-btn
-              button(ng-disabled="locationInput.$invalid", type="button", ng-click="getGeo(search.location)").btn.btn-primary Retrieve Lat/Lng
+          input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off", autofocus, ng-blur="getGeo(search.location)")
+          i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
     .row
       .col-xs-12.text-center
-        p Or
-        button(type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc").btn.btn-sm.btn-primary {{search.useCurrentLocation}}
+        p.or Or
+        button(tabindex='-1', type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc").btn.btn-sm.btn-primary {{search.useCurrentLocation}}
+          span.glyphicon.glyphicon-globe
     hr
     .row
       .col-xs-12
-        form(name="searchForm")
+        form(name="searchForm", ng-submit="submitSearch()")
           .row
             .col-xs-6
               .form-group
@@ -44,11 +43,12 @@
           hr
           .row
             .col-xs-12
+              h5 Twitter Search Query:
               input.form-control(type="text", name="query", ng-model="search.query", required="", placeholder="from:jimcramer #MSFT")
               span.help-block Your Search Query - A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity.Example: @noradio.
                 a(href="https://dev.twitter.com/docs/using-search", target="_blank").btn.btn-link Search Query Format Help
 
-    .row
-      .col-xs-12.text-center
-        button.btn.btn-sm.btn-primary(ng-href="search/12345", ng-disabled="searchForm.$invalid", ng-click="submitSearch()") Search Twitter 
-          span.glyphicon.glyphicon-globe
+          .row
+            .col-xs-12.text-center
+              input.btn.btn-sm.btn-primary(ng-disabled="searchForm.$invalid", type="submit", value="Search Twitter") 
+          

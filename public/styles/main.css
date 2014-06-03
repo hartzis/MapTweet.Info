@@ -3,6 +3,19 @@ body {
   background-color: #f5f5f5;
 }
 
+/* search form extras */
+.or {
+  margin: 0;
+}
+hr {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* tweets */
+.tweets {
+  padding: 0;
+}
 .radius-unit {
   padding: 0 0;
 }
@@ -23,6 +36,23 @@ body {
   background-color: #eee;
 }
 
+/* history menu */
+.history-menu {
+  min-width: 110px;
+}
+.history-well {
+  padding: 5px 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.history-menu {
+  cursor: pointer;
+}
+.label-default {
+  font-weight: 0;
+
+}
+
 /* Map CSS */
 .map-canvas { 
   height: 500px;
@@ -31,19 +61,6 @@ body {
 }
 img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[href^="http://maps.google.com/maps"]{
     display:none !important;
-}
-
-/* profile image */
-.profile-image {
-  max-height: 40px;
-  width: auto;
-  vertical-align: middle;
-}
-#history-link {
-  padding: 5px 0;
-}
-.profile-name {
-  line-height: 20px;
 }
 
 /*

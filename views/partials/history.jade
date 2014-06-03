@@ -1,27 +1,43 @@
 .row
   .col-xs-12.col-sm-8.col-sm-offset-2
-    h3 Search History
+    h3.text-center Search History
     .row
-      .col-xs-4
-        img(ng-src="{{user.twitter.profile_image_url}}", alt="").img-responsive
-      .col-xs-8
+      .col-xs-12.text-center
+        img(ng-src="{{user.twitter.profile_image_url}}", alt="")
         h5 @{{user.screen_name}}
     .row
       .col-xs-12.col-sm-10.col-sm-offset-1
         .input-group
             span.input-group-addon Filter:
-            input.form-control(type='text', ng-filter="")
-    .row(ng-repeat="search in user.geo_searches")
-      .col-xs-12
-        .panel.panel-primary
-          .panel-heading
-            button(type="button", ng-click="performSearch(search)").btn.btn-xs.btn-success {{search._id}} 
-              span.glyphicon.glyphicon-globe
-            button(type="button", ng-click="removeSearch(search)").btn.btn-xs.btn-danger.pull-right
-              span.glyphicon.glyphicon-remove              
-          .panel-body
-            span Location: {{search.location}}
-          .panel-footer 
-            button(type="button", ng-click="copyToSearch(search)").btn.btn-xs.btn-primary Copy to Search 
-              span.glyphicon.glyphicon-log-in
-          
+            input.form-control(ng-model="searchHistory")
+    .row(ng-repeat="search in user.geo_searches | filter:searchHistory")
+      .col-xs-12.well.history-well
+        div.btn-group.pull-right
+          button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')
+            span.glyphicon.glyphicon-cog &nbsp
+            span.caret
+          ul.dropdown-menu.history-menu(role='menu')
+            li
+              a.history-menu(ng-click="performSearch(search)")
+                span.glyphicon.glyphicon-globe &nbsp
+                span Search
+            li
+              a.history-menu(ng-click="copyToSearch(search)")
+                span.glyphicon.glyphicon-log-in &nbsp
+                span Copy
+            li.divider
+            li
+              a.history-menu(ng-click="removeSearch(search)")
+                span.glyphicon.glyphicon-remove &nbsp
+                span Remove
+
+        .h4 
+          .label.label-info {{search.location}}
+        .h5 Search Query: 
+          .label.label-default {{search.query}}
+        .h6 Latitude: 
+          .label.label-default {{search.latitude}} 
+          | &nbspLongitude: 
+          .label.label-default {{search.longitude}}
+          | &nbsp&nbspRadius: 
+          .label.label-default {{search.radius}} {{search.radiusUnit}}

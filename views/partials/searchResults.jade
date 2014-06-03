@@ -1,15 +1,21 @@
 .row
-  .col-xs-12.col-sm-5
+  .col-xs-12.col-sm-5.tweets
     tabset
-      tab
-        tab-heading GeoTweets 
-          span.badge {{results.geoTweets.length}}
-        .tweet(ng-repeat="tweet in results.geoTweets", ng-click="panToMarkerOpenInfo(tweet)")
-          div(ng-bind-html="tweet.text")
       tab
         tab-heading All tweets in Area 
           span.badge {{results.tweets.length}}
-        .tweet(ng-repeat="tweet in results.tweets")
+        .input-group
+            span.input-group-addon Filter:
+            input.form-control(ng-model="searchTextAll")
+        .tweet(ng-repeat="tweet in results.tweets|filter:{ text: searchTextAll }")
+          div(ng-bind-html="tweet.text")
+      tab
+        tab-heading GeoTweets 
+          span.badge {{results.geoTweets.length}}
+        .input-group
+            span.input-group-addon Filter:
+            input.form-control(type='text', placeholder="Ex:'#hashtag'", ng-model="searchTextGeo")
+        .tweet(ng-repeat="tweet in results.geoTweets|filter:{ text: searchTextGeo }", ng-click="panToMarkerOpenInfo(tweet)")
           div(ng-bind-html="tweet.text")
     h3(ng-show="!results.returned") Loading Tweets...
   .col-xs-12.col-sm-7

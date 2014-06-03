@@ -23,7 +23,11 @@ glutLatLngServices.factory('factoryLatLng', ['$http', function($http) {
           sensor: false
         }
       }).then(function(res) {
-        return res.data.results[0].geometry.location
+        console.log('ltlng q-', res.data);
+        return {
+          geo: res.data.results[0].geometry.location,
+          formattted_address: res.data.results[0].formatted_address
+        }
       })
     },
     // actively query location from google geocode and return searches
