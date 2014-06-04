@@ -1,0 +1,53 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    script(type="text/javascript").
+      if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+          var msViewportStyle = document.createElement("style");
+          msViewportStyle.appendChild(
+              document.createTextNode(
+                  "@-ms-viewport{width:auto!important}"
+              )
+          );
+          document.getElementsByTagName("head")[0].
+              appendChild(msViewportStyle);
+      }
+    meta(name="description", content="")
+    meta(name="author", content="")
+    link(rel="shortcut icon", href="../ico/favicon.ico")
+    title MapTweet.Info
+    // Bootstrap core CSS
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    // Custom styles for this template
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
+    // custom css
+    link(rel="stylesheet", href="../styles/main.css")
+    link(rel="stylesheet", href="../styles/welcome.css")
+  body
+    img.bg(src="../img/paris3.png")
+    .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") MapTweet.
+            strong Info
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right      
+            li: a(href="/about") About
+
+    .container
+      block content
+      
+
+
+    // required for bootstrap
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js") 
+    script(src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.js")
+

@@ -64,6 +64,11 @@ app.get('/auth/logout', function(req, res) {
   res.redirect('/auth/login');
 })
 
+// welcome about info
+app.get('/about', function(req, res) {
+  res.render('about');
+})
+
 // Redirect the user to Twitter for authentication.  When complete, Twitter
 // will redirect the user back to the application at
 //   /auth/twitter/callback

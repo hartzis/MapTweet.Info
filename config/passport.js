@@ -26,7 +26,7 @@ var twitterStrategy = new TwitterStrategy({
         callbackURL: conf.twitter.callbackURL
     },
     function(token, tokenSecret, profile, done) {
-        console.log('token-', token, 'tokenSecret-', tokenSecret, 'profile-', profile.username, profile.id);
+        // console.log('token-', token, 'tokenSecret-', tokenSecret, 'profile-', profile.username, profile.id);
         UserModel.findOrCreate(token, tokenSecret, profile, function(err, user) {
             if (err) {
                 return done(err);

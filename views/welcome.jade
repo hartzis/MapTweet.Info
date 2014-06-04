@@ -1,69 +1,19 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
-    script(type="text/javascript").
-      if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-          var msViewportStyle = document.createElement("style");
-          msViewportStyle.appendChild(
-              document.createTextNode(
-                  "@-ms-viewport{width:auto!important}"
-              )
-          );
-          document.getElementsByTagName("head")[0].
-              appendChild(msViewportStyle);
-      }
-    meta(name="description", content="")
-    meta(name="author", content="")
-    link(rel="shortcut icon", href="../ico/favicon.ico")
-    title MapTweet.Info
-    // Bootstrap core CSS
-    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
-    // Custom styles for this template
-    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
-    // custom css
-    link(rel="stylesheet", href="../styles/main.css")
-    link(rel="stylesheet", href="../styles/welcome.css")
-  body
-    img.bg(src="../img/paris3.png")
-    .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href="#") MapTweet.
-            strong Info
-        .collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right      
-            li: a(href="/about") About
+extends layout
 
-    .container
-      .row
-        .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-          .row.first-info
-            .col-xs-12.text-center
-              .panel.info-description
-                h1 MapTweet.Info
-                h5
-                  | This web application allows you to search the twitter api for tweets at a given location with a specific query.   The twitter API requires your login credentials to perform geo-located searches, so please sign in below to continue!
-                h5
-                  | If there are geoTweets( tweets that have a latitude and longitude ) they will be displayed on a map.
-          .row
-            .col-xs-12.text-center
-              .panel.panel-info.info-description
-                .panel-heading
-                  h3.panel-title Login with Twitter
-                .panel-body
-                  h5 Twitter authentication required to use application.
-                  a(href="/auth/twitter").btn.btn-success Sign In
+block content
+  .row
+    .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+      .row.first-info
+        .col-xs-12.text-center
+          .panel.panel-info.info-description
+            #main-panel-info
+              h1 MapTweet.Info
+              h4 
+                em An Interactive Geographic Tweet Visulaization App
+            h5.main-info.text-left
+              | This web application allows you to search for tweets at any given location!
 
+              | You can vizualize all tweets that have the twitter geolocation option enabled.
+              //- | If there are geoTweets (tweets that have a latitude and longitude), they will be visualized on a map.
 
-    // required for bootstrap
-    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js") 
-    script(src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.js")
-
+            a(href="/auth/twitter").btn.btn-success.last-info Sign In
