@@ -20,6 +20,7 @@ html(lang="en")
     link(rel="shortcut icon", href="../ico/favicon.ico")
     title MapTweet.Info
     // Bootstrap core CSS
+    link(rel="stylesheet", type="text/css", href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
     // Custom styles for this template
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
@@ -57,13 +58,15 @@ html(lang="en")
             .col-xs-12.text-center
               .panel.panel-info.info-description
                 .panel-heading
-                  h3.panel-title Login with Twitter
+                  h3.panel-title.icon-twitter Login with Twitter
                 .panel-body
                   h5 Twitter authentication required to use application.
-                  a(href="/auth/twitter").btn.btn-success Sign In
+                  a(href="/auth/twitter").twitter-login-btn 
+                    i.fa.fa-twitter Sign In with Twitter
 
 
     // required for bootstrap
+
     script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js") 
     script(src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.js")
 

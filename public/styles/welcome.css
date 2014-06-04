@@ -26,3 +26,24 @@ img.bg {
 .first-info {
   margin-top: 15px;
 }
+
+.twitter-login-btn {
+  /*width: 175px;*/
+  margin-top: 1em;
+  padding: 1em 3em;
+  border: 0;
+  border-radius: 16px;
+  background-color: #55acee;
+  color: white;
+  font-size: 1.2em;
+}
+
+.fa-twitter {
+  padding-right: 1em;
+}
+
+.twitter-login-btn:hover {
+  background-color: #006daa;
+  color: white;
+  text-decoration: none;
+}
