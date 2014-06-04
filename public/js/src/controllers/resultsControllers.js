@@ -50,7 +50,7 @@ resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factory
     // perform twitter search for desired location and query
     factoryTwitterSearch.getTweetsBySearchId($routeParams.searchId)
       .then(function(data) {
-        console.log('recieved-', data);
+        // console.log('recieved-', data);
         $scope.search = data.search;
         //set map for factory
         markerFactory.setMyMap($scope.myMap);

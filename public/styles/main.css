@@ -12,9 +12,18 @@ hr {
   margin-top: 10px;
 }
 
-/* tweets */
-.tweets {
-  padding: 0;
+/* tweets/results */
+.profile-img {
+  padding: 5px 0;
+}
+.all-tweets {
+  padding: 10px 0;
+}
+.tweet {
+  margin-bottom: 2px;
+}
+.results-filter {
+  padding: 10px;
 }
 .radius-unit {
   padding: 0 0;
@@ -45,6 +54,9 @@ hr {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.history-well:last-child {
+  margin-bottom: 60px;
+}
 .history-menu {
   cursor: pointer;
 }
@@ -66,6 +78,9 @@ hr {
 }
 img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[href^="http://maps.google.com/maps"]{
     display:none !important;
+}
+.map-container {
+
 }
 
 /*

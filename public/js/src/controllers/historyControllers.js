@@ -6,7 +6,7 @@ historyControllers.controller('historyCtrl', ['$scope', 'historyFactory',
 
     historyFactory.retrieveSearchHistory()
       .then(function(data) {
-        console.log('got this back-', data);
+        // console.log('got this back-', data);
         $scope.user = data;
       });
 

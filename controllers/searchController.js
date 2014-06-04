@@ -82,11 +82,9 @@ var searchController = {
     // remove search id from current users geosearches
     var userInfo = req.user;
     var searchId = req.query.searchId;
-    console.log('attempting to remove-', searchId, 'from-', userInfo);
     // find user and remove search by id
     UserModel.User.findByIdAndUpdate(userInfo.id, {$pull: {"geo_searches": searchId}}, 
       function(err, data) {
-      // console.log('returned from removal attempt-', data)
       if (err){
         res.send('error');
       } else {
@@ -95,13 +93,11 @@ var searchController = {
     })
   },
   searchHistory: function(req, res) {
-    // console.log('getting search history for user-', req.user);
     var userInfo = req.user;
     //find user and populate searches
     UserModel.User.findById(userInfo.id)
       .populate('geo_searches', null, 'geosearch')
       .exec(function(err, user) {
-        // console.log('user with populate searches-', user);
         // reformat
         var userHistory = {
           id: user._id,
@@ -118,7 +114,7 @@ var searchController = {
     createAndSaveGeoSearch(theGeoSearch, function(err, savedSearch) {
       if (err){
         console.log('error saving');
-        res.send(500, 'error saving saving/permforming search');
+        res.send(500, 'error saving/permforming search');
         return;
       }
       res.send(savedSearch);

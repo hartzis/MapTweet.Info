@@ -61,4 +61,7 @@
               button.btn.btn-sm.btn-primary(ng-disabled="searchForm.$invalid || notSubmittingSearch", type="submit", ng-click="submitSearch()") 
                 span.glyphicon.glyphicon-search
                 |&nbspSearch Twitter 
-          
+    .row
+      .col-xs-12
+        h5
+          | This search will return the {{search.count}} most recent tweets matching the search criteria.

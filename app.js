@@ -77,7 +77,7 @@ app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
         failureRedirect: '/auth/login'
     }), function(res, req) {
-        console.log('twitter login working redirecting to search');
+        // twitter login working redirecting to search
         req.redirect('/')
     });
 

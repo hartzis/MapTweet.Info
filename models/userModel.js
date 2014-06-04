@@ -37,25 +37,19 @@ var User = mongoose.model('user', userSchema);
 
 // find user, if not found create a new user
 var findOrCreate = function(token, tokenSecret, profile, cb) {
-    console.log('trying to find or create new twitter user-', profile.username, profile.id);
+    // console.log('trying to find or create new twitter user-', profile.username, profile.id);
     // try to find user
     User.findOne({
         twitter_id: profile.id
     }, function(err, user) {
         if (err) console.log('error finding-', err);
         if (user) {
-            console.log('found user-', user.screen_name, user.twitter_id);
+            // console.log('found user-', user.screen_name, user.twitter_id);
+            // update twitter user ever time they log in
             user.twitter = profile._json;
             user.twitter_token = token;
             user.twitter_tokenSecret = tokenSecret;
-            // User.update({twitter_id: user.twitter_id}, {$set:{twitter_token: token, twitter_tokenSecret: tokenSecret, twitter: profile._json}}, function(err, user) {
-            //   if (err){
-            //     console.log('error updating user info-', err);
-            //     cb(err, user);
-            //   } else {
-            //     cb(err, user)
-            //   }
-            // })
+            // save updated info
             user.save(function(err, user) {
               if (err) console.log('error updating user info-', err);
               cb(err, user)
