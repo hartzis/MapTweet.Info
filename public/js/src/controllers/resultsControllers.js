@@ -56,6 +56,10 @@ resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factory
         markerFactory.setMyMap($scope.myMap);
 
         $scope.results.tweets = data.statuses;
+        angular.forEach($scope.results.tweets, function(tweet) {
+          var splitDate = tweet.created_at.split(' ');
+          tweet.created_at = [splitDate[1], splitDate[2], splitDate[3], splitDate[5]].join(" ");
+        })
         // filter geotweets
         $scope.results.geoTweets = $scope.results.tweets.filter(function(tweet) {
           return tweet.geo != null;
@@ -93,16 +97,22 @@ resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factory
       var currentTweet = $scope.results.geoTweets.filter(function(tweet) {
         return tweet.marker == marker;
       })[0];
-      $scope.currentMarkerInfo.user.screen_name = currentTweet.user.screen_name;
+      $scope.currentMarkerInfo.user = currentTweet.user;
+      $scope.currentMarkerInfo.created_at = currentTweet.created_at;
+      // $scope.currentMarkerInfo.user.screen_name = currentTweet.user.screen_name;
       $scope.currentMarkerInfo.text = currentTweet.text;
       $scope.myInfoWindow.open($scope.myMap, marker);
     };
     $scope.panToMarkerOpenInfo = function(tweet) {
-      $scope.currentMarkerInfo.user.screen_name = tweet.user.screen_name;
+      // $scope.currentMarkerInfo.user.screen_name = tweet.user.screen_name;
+      console.log('copying this tweet over-', tweet);
+      $scope.currentMarkerInfo.user = tweet.user;
+      $scope.currentMarkerInfo.created_at = tweet.created_at;
       $scope.currentMarkerInfo.text = tweet.text;
       $scope.currentMarkerInfo.marker = tweet.marker;
       $scope.myInfoWindow.open($scope.myMap, tweet.marker);
       $scope.myMap.panTo(tweet.marker.getPosition());
+      // $scope.$apply();
     }
 
 

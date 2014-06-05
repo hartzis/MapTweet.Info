@@ -23,7 +23,6 @@ latLngServices.factory('factoryLatLng', ['$http', function($http) {
           sensor: false
         }
       }).then(function(res) {
-        console.log('ltlng q-', res.data);
         return {
           geo: res.data.results[0].geometry.location,
           formattted_address: res.data.results[0].formatted_address

@@ -19,6 +19,9 @@ img.bg {
     margin-left: -512px;   /* 50% */
   }
 }
+h1 {
+  margin-top: 0px;
+}
 .info-description {
   background-color: rgba(255,255,255,.7);
   border: 2px solid #fff;
@@ -42,8 +45,8 @@ img.bg {
   margin-top: 15px;
 }
 .login-row {
-  margin: 20px;
-  margin-top: 40px
+  margin: 25px;
+  margin-top: 30px
 }
 .twitter-login-btn {
   font-size: 18px;

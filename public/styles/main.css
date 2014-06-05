@@ -45,6 +45,12 @@ hr {
 .tab-content>.active {
   background-color: #eee;
 }
+.tweet-container-info-box {
+  width: 350px;
+}
+.geo-tweet {
+  cursor: pointer;
+}
 
 /* history menu */
 .history-menu {

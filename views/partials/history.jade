@@ -31,7 +31,10 @@
                 span.glyphicon.glyphicon-remove &nbsp
                 span Remove
         .h4.form-inline
-          .label.label-info {{search.location}}
+          //- .label.label-info {{search.location}}
+          button(ng-click="performSearch(search)").btn.btn-info
+            span.glyphicon.glyphicon-globe
+            |&nbsp{{search.location}}
         .h5.form-inline Search Query: 
           .label.label-default {{search.query}}
         .h6 Latitude: 

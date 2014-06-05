@@ -32,6 +32,9 @@ mapTweetInfoApp.config(['$routeProvider',
                 templateUrl: 'partials/history',
                 controller: 'historyCtrl'
             })
+            .when('/about',{
+                templateUrl: 'partials/about'
+            })
             .otherwise({
                 redirectTo: '/'
             });
