@@ -99,20 +99,17 @@ resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factory
       })[0];
       $scope.currentMarkerInfo.user = currentTweet.user;
       $scope.currentMarkerInfo.created_at = currentTweet.created_at;
-      // $scope.currentMarkerInfo.user.screen_name = currentTweet.user.screen_name;
       $scope.currentMarkerInfo.text = currentTweet.text;
       $scope.myInfoWindow.open($scope.myMap, marker);
     };
     $scope.panToMarkerOpenInfo = function(tweet) {
-      // $scope.currentMarkerInfo.user.screen_name = tweet.user.screen_name;
-      console.log('copying this tweet over-', tweet);
       $scope.currentMarkerInfo.user = tweet.user;
       $scope.currentMarkerInfo.created_at = tweet.created_at;
       $scope.currentMarkerInfo.text = tweet.text;
       $scope.currentMarkerInfo.marker = tweet.marker;
       $scope.myInfoWindow.open($scope.myMap, tweet.marker);
       $scope.myMap.panTo(tweet.marker.getPosition());
-      // $scope.$apply();
+
     }
 
 

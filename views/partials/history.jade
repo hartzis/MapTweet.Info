@@ -10,7 +10,7 @@
         .input-group
             span.input-group-addon Filter:
             input.form-control(ng-model="searchHistory")
-    .row.well.history-well(ng-repeat="search in user.geo_searches | filter:searchHistory")
+    .row.well.history-well(ng-repeat="search in user.geo_searches | filter:searchHistory | orderBy: 'lastSearched':true")
       .col-xs-12
         div.btn-group.pull-right
           button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')

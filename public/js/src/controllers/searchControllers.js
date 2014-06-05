@@ -30,6 +30,7 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
         $scope.search.usedCurrentLocation = false;
         $scope.search.retrievingCurrentLoc = false;
         $scope.submittingSearch = false;
+        $scope.gotLatLng = false;
 
         // set requested search fields from query
         for (var prop in $location.search()) {
@@ -50,6 +51,7 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
                 $scope.search.latitude = data.geo.lat;
                 $scope.search.longitude = data.geo.lng;
                 $scope.search.location = data.formattted_address;
+                $scope.gotLatLng = true;
               });
           }
         };
@@ -85,11 +87,8 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
         // submit geo search, saves, then returns object with id
         // if successful route user to search/:searchId to display data
         $scope.submitSearch = function () {
-            $scope.submittingSearch = true;
-            factoryTwitterSearch.postTwitterSearch($scope.search)
-              // .then(function (savedSearch) {
-              //     console.log('saved and returned search obj-', savedSearch);
-              // })
+          $scope.submittingSearch = true;
+          factoryTwitterSearch.postTwitterSearch($scope.search)
         }
 
     }

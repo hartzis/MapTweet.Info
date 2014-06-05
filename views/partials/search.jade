@@ -12,8 +12,9 @@
     .row
       .col-xs-12.text-center
         p.or Or
-        button(tabindex='-1', type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc").btn.btn-sm.btn-primary {{search.useCurrentLocation}}
+        button.search-form-btns(tabindex='-1', type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc") 
           span.glyphicon.glyphicon-globe
+          |&nbsp{{search.useCurrentLocation}}
     hr
     .row
       .col-xs-12
@@ -58,7 +59,7 @@
 
           .row
             .col-xs-12.text-center
-              button.btn.btn-sm.btn-primary(ng-disabled="searchForm.$invalid || notSubmittingSearch", type="submit", ng-click="submitSearch()") 
+              button.search-form-btns(ng-disabled="searchForm.$invalid || notSubmittingSearch", type="submit", ng-click="submitSearch()") 
                 span.glyphicon.glyphicon-search
                 |&nbspSearch Twitter 
     .row

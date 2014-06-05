@@ -49,17 +49,13 @@ h1 {
   margin-top: 30px
 }
 .twitter-login-btn {
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 20px;
   border: 0;
   border-radius: 35px;
   background-color: #55acee;
   color: white;
-  font-size: 1.2em;
-}
-
-.fa-twitter {
-  /*padding-right: 1em;*/
+  /*font-size: 1.2em;*/
 }
 
 .twitter-login-btn:hover {
