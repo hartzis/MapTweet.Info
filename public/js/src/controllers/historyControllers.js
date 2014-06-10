@@ -1,7 +1,7 @@
 var historyControllers = angular.module('historyControllers', []);
 
-historyControllers.controller('historyCtrl', ['$scope', 'historyFactory',
-  function($scope, historyFactory) {
+historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactory',
+  function($scope, $modal, historyFactory) {
     $scope.user = {};
 
     historyFactory.retrieveSearchHistory()
@@ -9,6 +9,25 @@ historyControllers.controller('historyCtrl', ['$scope', 'historyFactory',
         // console.log('got this back-', data);
         $scope.user = data;
       });
+
+    // confirm remove all modal
+    $scope.openConfirmRemoveAll = function() {
+      var modalInstance = $modal.open({
+        templateUrl: 'confirmRemoveAll.html',
+        controller: 'confirmRemoveCtrl',
+        size: 'sm'
+      });
+      // if confirm then remove all
+      modalInstance.result.then(function() {
+        console.log('got confirmed');
+        // historyFactory.removeAll()
+        //   .then(function(response) {
+        //     if (response = 'removed'){
+        //       $scope.user.geo_searches = [];
+        //   }
+        // })        
+      })
+    }
 
     $scope.performSearch = function(search) {
       historyFactory.performSearch(search._id);
@@ -27,8 +46,20 @@ historyControllers.controller('historyCtrl', ['$scope', 'historyFactory',
         })
     }
 
-    // if click on 'search: id', re-peform search
-    // if click on 'copy to search', send to search page with ?query string
-    // example: ?location=paris&radius=25
-    // set $location.path('/').search({location: location, radius: radius});
+  }]);
+
+//modal controller
+historyControllers.controller('confirmRemoveCtrl', ['$scope', '$modalInstance',
+  function($scope, $modalInstance) {
+    // confirm delete
+    $scope.confirmRemoveAll = function() {
+      // console.log('confirmed remove all');
+      $modalInstance.close()
+    }
+
+    // cancel out
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+      // console.log('canceled remove all');
+    }
   }])

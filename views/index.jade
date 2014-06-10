@@ -44,9 +44,7 @@ html(lang="en")
                 |&nbspSearch 
             li: a(href="#/about") About
           ul.nav.navbar-nav.navbar-right
-            li: a(href="#/history") Search History
-            li
-              a(href="#/history") @#{twitter_user.screen_name}
+            li: a(href="#/history") Search History: @#{twitter_user.screen_name}
             li: a(href="/auth/logout") Sign Out 
               span.glyphicon.glyphicon-remove
 

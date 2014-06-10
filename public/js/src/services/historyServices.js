@@ -3,6 +3,18 @@ var historyServices = angular.module('historyServices', []);
 historyServices.factory('historyFactory', ['$http', '$location',
   function($http, $location) {
     return {
+      removeAll: function() {
+        console.log('remove all factory triggered');
+        // remove all searchs from users geo_searches
+        // return $http.delete('/api/search/all')
+        //   .then(function(data) {
+        //     if (data.status === 200){
+        //       if (data.data === 'removed') {
+        //         return 'removed';
+        //       }
+        //     }
+        //   })
+      },
       retrieveSearchHistory: function() {
         return $http.get('/api/search/history')
                   .then(function(res) {
@@ -29,7 +41,9 @@ historyServices.factory('historyFactory', ['$http', '$location',
         return $http.delete('/api/search', {params: {searchId: searchId}})
           .then(function(data) {
             if (data.status === 200){
-              return data.data;
+              if (data.data === 'removed') {
+                return 'removed';
+              }
             }
           })
       }
