@@ -3,6 +3,7 @@ var historyControllers = angular.module('historyControllers', []);
 historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactory',
   function($scope, $modal, historyFactory) {
     $scope.user = {};
+    $scope.submittingRemoveAll = false;
 
     historyFactory.retrieveSearchHistory()
       .then(function(data) {
@@ -19,13 +20,12 @@ historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactor
       });
       // if confirm then remove all
       modalInstance.result.then(function() {
-        console.log('got confirmed');
-        // historyFactory.removeAll()
-        //   .then(function(response) {
-        //     if (response = 'removed'){
-        //       $scope.user.geo_searches = [];
-        //   }
-        // })        
+        historyFactory.removeAll()
+          .then(function(response) {
+            if (response = 'removed'){
+              $scope.user.geo_searches = [];
+          }
+        })        
       })
     }
 
@@ -38,6 +38,7 @@ historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactor
     }
 
     $scope.removeSearch = function(search) {
+      $scope.submittingRemoveAll = true;
       historyFactory.removeSearch(search._id)
         .then(function(response) {
           if (response === 'removed'){

@@ -109,6 +109,8 @@ app.post('/api/search', searchController.postSearch);
 app.get('/api/search', searchController.getSearch);
 // remove search by id from users geosearches
 app.delete('/api/search', searchController.removeSearch);
+// remove all search history for a user
+app.delete('/api/search/all', searchController.removeAll);
 
 // return search history for user
 app.get('/api/search/history', searchController.searchHistory);

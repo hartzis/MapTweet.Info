@@ -59,7 +59,7 @@
 
           .row
             .col-xs-12.text-center
-              button.search-form-btns(ng-disabled="searchForm.$invalid || notSubmittingSearch", type="submit", ng-click="submitSearch()") 
+              button.search-form-btns(ng-disabled="searchForm.$invalid || submittingSearch", type="submit", ng-click="submitSearch()") 
                 span.glyphicon.glyphicon-search
                 |&nbspSearch Twitter 
     .row

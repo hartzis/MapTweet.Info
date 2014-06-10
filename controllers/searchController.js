@@ -78,8 +78,20 @@ var twitterSearch = function(cb, options) {
 
 // setup searchController object to be exported
 var searchController = {
+  // remove all search history for a user
+  removeAll: function(req, res) {
+    var userInfo = req.user;
+    UserModel.User.findByIdAndUpdate(userInfo.id, {$set:{"geo_searches": []}},
+      function(err, data) {
+        if(err){
+          res.send('error');
+        } else {
+          res.send('removed');
+        }
+      })
+  },
+  // remove search id from current users geosearches
   removeSearch: function(req, res) {
-    // remove search id from current users geosearches
     var userInfo = req.user;
     var searchId = req.query.searchId;
     // find user and remove search by id

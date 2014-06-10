@@ -4,6 +4,19 @@ body {
   /*background-image:url('../img/hexellence.png');*/
 }
 
+/* about */
+#main-panel-info {
+  color: #31708f;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  margin-top: 15px;
+}
+.main-info {
+  padding: 0 20px;
+}
+
 /* search form extras */
 .or {
   margin: 0;
