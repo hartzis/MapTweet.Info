@@ -63,3 +63,8 @@ h1 {
   color: white;
   text-decoration: none;
 }
+
+.share-buttons>li>a:hover {
+  color: #000;
+  background-color: transparent;
+}
