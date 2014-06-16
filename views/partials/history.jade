@@ -22,8 +22,8 @@
           a.search-form-btns(href="#/") 
             span.glyphicon.glyphicon-search
             |&nbspSearch 
-    .row.well.history-well(ng-repeat="search in user.geo_searches | filter:searchHistory | orderBy: 'lastSearched':true")
-      .col-xs-12
+    .row(ng-repeat="search in user.geo_searches | filter:searchHistory | orderBy: 'lastSearched':true")
+      .col-xs-12.col-sm-10.col-sm-offset-1.well.history-well
         div.btn-group.pull-right
           button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
             span.glyphicon.glyphicon-cog &nbsp

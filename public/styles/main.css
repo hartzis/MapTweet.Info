@@ -87,7 +87,7 @@ hr {
   padding: 10px 0;
 }
 .tweet {
-  margin-bottom: 2px;
+  margin: 3px -12px;
 }
 .results-filter {
   padding: 10px;
@@ -138,9 +138,9 @@ hr {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.history-well:last-child {
+/*.history-well:last-child {
   margin-bottom: 60px;
-}
+}*/
 .history-menu {
   cursor: pointer;
 }
@@ -156,7 +156,7 @@ hr {
 
 /* Map CSS */
 .map-canvas { 
-  height: 500px;
+  height: 440px;
   /*border: 2px solid #eee;*/
   /*margin: 5px;*/
 }

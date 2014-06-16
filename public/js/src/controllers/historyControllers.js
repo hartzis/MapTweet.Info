@@ -8,7 +8,16 @@ historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactor
     historyFactory.retrieveSearchHistory()
       .then(function(data) {
         // console.log('got this back-', data);
-        $scope.user = data;
+        angular.forEach(data.geo_searches, function(search) {
+          var tempLat = +search.latitude;
+          var tempLong = +search.longitude;
+          search.latitude = tempLat.toFixed(4);
+          search.longitude = tempLong.toFixed(4);
+        })
+        return data;
+      })
+      .then(function(cleanedData) {
+        $scope.user = cleanedData;
       });
 
     // confirm remove all modal
