@@ -36,7 +36,6 @@
                   h5 {{tweet.user.name}}&nbsp
                     a.small(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank") @{{tweet.user.screen_name}}
                     span.small.pull-right.date-info &nbsp&nbsp&nbsp&nbsp{{tweet.created_at}}
-
               .row
                 .col-xs-12
                   div(ng-bind-html="tweet.text")
