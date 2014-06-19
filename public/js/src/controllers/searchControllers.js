@@ -24,7 +24,7 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
         $scope.search.query = '';
         $scope.search.count = '50';
         $scope.search.location = '';
-        $scope.search.radius = '25';
+        $scope.search.radius = 25;
         $scope.search.radiusUnit = 'Km';
         $scope.search.useCurrentLocation = 'Use My Current Location';
         $scope.search.usedCurrentLocation = false;
@@ -35,7 +35,11 @@ searchControllers.controller('searchCtrl', ['$scope', '$location', 'factoryLatLn
         // set requested search fields from query
         for (var prop in $location.search()) {
           if ($location.search().hasOwnProperty(prop)) {
-            $scope.search[prop] = $location.search()[prop];
+            if (prop === 'radius') {
+              $scope.search[prop] = parseInt($location.search()[prop]);
+            } else {
+              $scope.search[prop] = $location.search()[prop];
+            }
           }
         }
 

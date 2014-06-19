@@ -52,6 +52,13 @@ background-color: transparent;
 }
 
 /* search form extras */
+.ng-dirty.ng-invalid {
+  border-color: #FF0000;
+  /*box-shadow: 3px 3px 5px 6px #FF0000;*/
+}
+/*.ng-valid{
+  border-color: #00dd00;
+}*/
 .or {
   margin: 0;
 }

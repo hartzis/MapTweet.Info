@@ -7,7 +7,7 @@
     .row
       .col-xs-12.text-left
         form(name="locationInput")
-          input.form-control(type="text", name="location", ng-model="search.location", required="", placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off", autofocus, ng-blur="getGeo(search.location)")
+          input.form-control(type="text", name="location", ng-model="search.location", required, placeholder="Location to find GeoTweets", typeahead="location for location in queryLocations($viewValue)", typeahead-loading="loadingLocations", autocomplete="off", autofocus, ng-blur="getGeo(search.location)")
           i.glyphicon.glyphicon-refresh(ng-show="loadingLocations")
     .row
       .col-xs-12.text-center
@@ -15,7 +15,6 @@
         button.search-form-btns(tabindex='-1', type="button", ng-click="getCurrentLocation()", ng-disabled="search.retrievingCurrentLoc") 
           span.glyphicon.glyphicon-globe
           |&nbsp{{search.useCurrentLocation}}
-    hr
     .row
       .col-xs-12
         form(name="searchForm")
@@ -23,17 +22,17 @@
             .col-xs-6
               .form-group
                 label(for="latitude") Latitude
-                input#latitude.form-control(type="text", name="lat", ng-model="search.latitude", required="", disabled="disabled")
+                input#latitude.form-control(type="text", name="lat", ng-model="search.latitude", required, disabled="disabled")
             .col-xs-6
               .form-group
                 label(for="longitude") Longitude
-                input#longitude.form-control(type="text", name="lng", ng-model="search.longitude", required="", disabled="disabled")
+                input#longitude.form-control(type="text", name="lng", ng-model="search.longitude", required, disabled="disabled")
           .row.text-left
             .col-xs-6
               .form-group
                 label(for="the-radius") Radius
                 .input-group#the-radius
-                  input.form-control(type='text', required="", placeholder="Ex:'5'", ng-model="search.radius")
+                  input.form-control(type='number', required, min="1", max="1000", ng-model="search.radius")
                   .input-group-btn
                     button.btn.btn-default(tabindex='-1', type='button', disabled="disabled") {{search.radiusUnit}}
                     button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
@@ -53,13 +52,13 @@
           .row
             .col-xs-12.text-left
               h5 Twitter Search Query (Not Required):
-              input.form-control(type="text", name="query", ng-enter="submitSearch()", ng-model="search.query", placeholder="from:jimcramer #MSFT")
+              input.form-control(type="text", name="query", ng-enter="searchForm.$valid && submitSearch()", ng-model="search.query", placeholder="from:jimcramer #MSFT")
               span.help-block.text-left Your Search Query - A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. Queries may additionally be limited by complexity. Example: @noradio.
                 a(href="https://dev.twitter.com/docs/using-search", target="_blank") &nbspNeed Help?
 
           .row
             .col-xs-12.text-center
-              button.search-form-btns(ng-disabled="searchForm.$invalid || submittingSearch", type="submit", ng-click="submitSearch()") 
+              button.search-form-btns(type="submit", ng-click="searchForm.$valid && submitSearch()") 
                 span.glyphicon.glyphicon-search
                 |&nbspSearch Twitter 
     .row
