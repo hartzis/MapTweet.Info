@@ -162,7 +162,7 @@ hr {
 }
 
 /* Map CSS */
-.map-canvas { 
+#map-canvas { 
   height: 440px;
   /*border: 2px solid #eee;*/
   /*margin: 5px;*/
