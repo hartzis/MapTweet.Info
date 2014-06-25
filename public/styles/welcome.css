@@ -13,6 +13,10 @@ img.bg {
   left: 0;
 }
 
+.thumb-row {
+  margin-top: 15px;
+}
+
 @media screen and (max-width: 1024px) { /* Specific to this particular image */
   img.bg {
     left: 50%;

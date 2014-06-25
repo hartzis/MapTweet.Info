@@ -15,7 +15,17 @@ block content
               a(href="http://en.wikipedia.org/wiki/Geolocation") geolocation
               |.
               //- | If there are geoTweets (tweets that have a latitude and longitude), they will be visualized on a map.
-
+            .container-fluid
+              .row
+                .col-xs-12
+                  img.thumb-img-focus(src="img/maptweet-info-ss.png").img-responsive.img-thumbnail
+              .row.thumb-row
+                .col-xs-6
+                  a(href="#").thumbnail.thumb-img
+                    img(src="img/maptweet-info-ss.png").img-responsive.img-thumbnail
+                .col-xs-6
+                  a(href="#").thumbnail.thumb-img
+                    img(src="img/maptweet-search-ss.png").img-responsive.img-thumbnail
             .row.text-center.login-row
               a(href="/auth/twitter").twitter-login-btn 
                 i.fa.fa-twitter &nbspSign in with Twitter
@@ -26,7 +36,6 @@ block content
             h3 Github:
             h4
               a(href="https://github.com/hartzis/MapTweet.info", target="_blank") Fork me on Github
-            h3 Share:
             ul.share-buttons
               li
                 a(href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.maptweet.info', target='_blank')
