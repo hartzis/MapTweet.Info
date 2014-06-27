@@ -59,15 +59,19 @@ app.get('/auth/login', function(req, res) {
 // logout route
 app.get('/auth/logout', function(req, res) {
   // Passport injects the logout method for us to call
+  // console.log('logout post received');
   req.logout();
-  // Redirect back to the login page
+  // console.log('logout success');
+  // console.log('sending 200');
+  // res.send(200);
+  // // Redirect back to the login page
   res.redirect('/auth/login');
-})
+});
 
 // welcome about info
 app.get('/about', function(req, res) {
   res.render('about');
-})
+});
 
 // Redirect the user to Twitter for authentication.  When complete, Twitter
 // will redirect the user back to the application at

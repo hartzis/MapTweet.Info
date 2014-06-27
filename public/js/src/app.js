@@ -16,9 +16,9 @@
 
   ]);
 
-
-  mapTweetInfoApp.config(['$routeProvider',
-      function($routeProvider) {
+  // setup angular single page routes
+  mapTweetInfoApp.config(['$routeProvider', '$locationProvider',
+      function($routeProvider, $locationProvider) {
           $routeProvider
               .when('/', {
                   templateUrl: 'partials/search',
@@ -28,16 +28,27 @@
                   templateUrl: 'partials/searchResults',
                   controller: 'resultsCtrl'
               })
-              .when('/history',{
+              .when('/history', {
                   templateUrl: 'partials/history',
                   controller: 'historyCtrl'
               })
-              .when('/about',{
+              .when('/about', {
                   templateUrl: 'partials/about'
               })
+              // .when('/auth/logout', {
+              //     templateUrl: 'auth/logout'
+              //     // resolve: {
+              //     //   factory: 'logoutCtrl'
+              //     //   }
+              //     // controller: function () {
+              //     //     $window.location.assign('/auth/logout');
+              //     // }
+              // })
               .otherwise({
                   redirectTo: '/'
               });
+          // remove # in the address bar
+          $locationProvider.html5Mode(true);
       }
   ]);
 })();

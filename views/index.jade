@@ -26,6 +26,7 @@ html(lang="en")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
     // custom css
     link(rel="stylesheet", href="styles/main.css")
+    base(href="/")
   body
     .navbar.navbar-inverse.navbar-static-top(role="navigation")
       .container-fluid
@@ -35,18 +36,18 @@ html(lang="en")
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href="#") MapTweet.
+          a.navbar-brand(href="/") MapTweet.
             strong Info
         .collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-left
             li
-              a(href="#/") 
+              a(href="/") 
                 span.glyphicon.glyphicon-search
                 |&nbspSearch 
-            li: a(href="#/about") About
+            li: a(href="/about") About
           ul.nav.navbar-nav.navbar-right
-            li: a(href="#/history") Search History: @#{twitter_user.screen_name}
-            li: a(href="/auth/logout") Sign Out 
+            li: a(href="/history") Search History: @#{twitter_user.screen_name}
+            li: a(href="/auth/logout", target="_self") Sign Out 
               span.glyphicon.glyphicon-remove
 
     // angular inject views

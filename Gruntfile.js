@@ -1,4 +1,4 @@
-// allow grunt-cli to ru this gruntfile and tell us waht "grunt" is
+// allow grunt-cli to run this gruntfile and tell us what "grunt" is
 module.exports = function (grunt) {
   // initialize the grunt configuration
   grunt.initConfig({
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         // set options for this
         options: {
           // the file will still get uglified and minified, but will still look readable
-          beautify: true,
+          beautify: false,
           // source map actually tracks the original line numbers when errors happen
           sourceMap: true
         }
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
       // watch js files
       // uglify development subtask
       js: {
-        files: ['public/js/src/*.js', 'public/js/src/*/*.js'],
+        files: ['public/js/src/{,*/}*.js'],
         tasks: 'uglify:development'
       }
     }

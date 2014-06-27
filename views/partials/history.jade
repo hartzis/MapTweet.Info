@@ -19,7 +19,7 @@
         h3 No Search History
         h5 Go Search for some tweets!
         h5
-          a.search-form-btns(href="#/") 
+          a.search-form-btns(href="/") 
             span.glyphicon.glyphicon-search
             |&nbspSearch 
     .row(ng-repeat="search in user.geo_searches | filter:searchHistory | orderBy: 'lastSearched':true")
