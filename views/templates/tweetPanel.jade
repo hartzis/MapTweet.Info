@@ -1,0 +1,12 @@
+.row.panel.panel-info.tweet
+  .col-xs-2.text-center
+    img.profile-img(ng-src="{{tweet.user.profile_image_url}}")
+  .col-xs-10
+    .row
+      .col-xs-12
+        h5 {{tweet.user.name}}&nbsp
+          a.small(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank") @{{tweet.user.screen_name}}
+          span.small.pull-right.date-info &nbsp&nbsp&nbsp&nbsp{{tweet.created_at}}
+    .row
+      .col-xs-12
+        div(ng-bind-html="tweet.text")

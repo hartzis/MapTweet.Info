@@ -14,5 +14,9 @@ module.exports = {
    var name = req.params.name;
    // console.log('partial render-', name);
    res.render('partials/' + name);
+ },
+ templates: function(req, res) {
+   var name = req.params.name;
+   res.render('templates/' + name);
  }
 }
