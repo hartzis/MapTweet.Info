@@ -1,4 +1,4 @@
-.row.panel.panel-info.tweet
+.row.panel.panel-info.tweet(ng-class="{ 'geo-tweet' : tweet.geo}")
   .col-xs-2.text-center
     img.profile-img(ng-src="{{tweet.user.profile_image_url}}")
   .col-xs-10
@@ -10,3 +10,5 @@
     .row
       .col-xs-12
         div(ng-bind-html="tweet.text")
+    .row.tweet-globe-row(ng-hide="!tweet.geo")
+      span.glyphicon.glyphicon-globe.tweet-globe

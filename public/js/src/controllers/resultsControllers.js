@@ -108,12 +108,17 @@
         $scope.myInfoWindow.open($scope.myMap, marker);
       };
       $scope.panToMarkerOpenInfo = function(tweet) {
-        $scope.currentMarkerInfo.user = tweet.user;
-        $scope.currentMarkerInfo.created_at = tweet.created_at;
-        $scope.currentMarkerInfo.text = tweet.text;
-        $scope.currentMarkerInfo.marker = tweet.marker;
-        $scope.myInfoWindow.open($scope.myMap, tweet.marker);
-        $scope.myMap.panTo(tweet.marker.getPosition());
+        if (!tweet.geo){
+          return;
+        } else {
+          $scope.currentMarkerInfo.user = tweet.user;
+          $scope.currentMarkerInfo.created_at = tweet.created_at;
+          $scope.currentMarkerInfo.text = tweet.text;
+          $scope.currentMarkerInfo.marker = tweet.marker;
+          $scope.myInfoWindow.open($scope.myMap, tweet.marker);
+          $scope.myMap.panTo(tweet.marker.getPosition());
+        }
+        
 
       }
 

@@ -8,19 +8,7 @@
             span.input-group-addon Filter:
             input.form-control(type='text', placeholder="Ex:'#hashtag'", ng-model="searchTextAll")
         .tweet-container.container-fluid
-          tweet-panel(ng-repeat="tweet in results.tweets|filter:{ text: searchTextAll }", tweet="tweet")
-          //- .row.panel.panel-info.tweet(ng-repeat="tweet in results.tweets|filter:{ text: searchTextAll }")
-          //-   .col-xs-2.text-center
-          //-     img.profile-img(ng-src="{{tweet.user.profile_image_url}}")
-          //-   .col-xs-10
-          //-     .row
-          //-       .col-xs-12
-          //-         h5 {{tweet.user.name}}&nbsp
-          //-           a.small(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank") @{{tweet.user.screen_name}}
-          //-           span.small.pull-right.date-info &nbsp&nbsp&nbsp&nbsp{{tweet.created_at}}
-          //-     .row
-          //-       .col-xs-12
-          //-         div(ng-bind-html="tweet.text")
+          tweet-panel(ng-repeat="tweet in results.tweets|filter:{ text: searchTextAll }", tweet="tweet", ng-click="panToMarkerOpenInfo(tweet)")
       tab
         tab-heading GeoTweets 
           span.badge {{results.geoTweets.length}}
@@ -28,20 +16,7 @@
             span.input-group-addon Filter:
             input.form-control(type='text', placeholder="Ex:'#hashtag'", ng-model="searchTextGeo")
         .tweet-container.container-fluid
-          .row.panel.panel-info.tweet.geo-tweet(ng-repeat="tweet in results.geoTweets|filter:{ text: searchTextGeo }", ng-click="panToMarkerOpenInfo(tweet)")
-            .col-xs-2.text-center
-              img.profile-img(ng-src="{{tweet.user.profile_image_url}}")
-            .col-xs-10
-              .row
-                .col-xs-12
-                  h5 {{tweet.user.name}}&nbsp
-                    a.small(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank") @{{tweet.user.screen_name}}
-                    span.small.pull-right.date-info &nbsp&nbsp&nbsp&nbsp{{tweet.created_at}}
-              .row
-                .col-xs-12
-                  div(ng-bind-html="tweet.text")
-              .row.tweet-globe-row
-                span.glyphicon.glyphicon-globe.tweet-globe
+          tweet-panel(ng-repeat="tweet in results.geoTweets|filter:{ text: searchTextGeo }", tweet="tweet", ng-click="panToMarkerOpenInfo(tweet)")
     h3(ng-show="!results.returned") Loading Tweets...
   .col-xs-12.col-sm-7.well.well-sm
     .container-fluid
