@@ -30,10 +30,12 @@
         });
         // if confirm then remove all
         modalInstance.result.then(function() {
+          $scope.submittingRemoveAll = true;
           historyFactory.removeAll()
             .then(function(response) {
               if (response = 'removed'){
                 $scope.user.geo_searches = [];
+                $scope.submittingRemoveAll = false;
             }
           })        
         })
@@ -48,7 +50,6 @@
       }
 
       $scope.removeSearch = function(search) {
-        $scope.submittingRemoveAll = true;
         historyFactory.removeSearch(search._id)
           .then(function(response) {
             if (response === 'removed'){
