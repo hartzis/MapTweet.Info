@@ -36,15 +36,6 @@
               .when('/about', {
                   templateUrl: 'partials/about'
               })
-              // .when('/auth/logout', {
-              //     templateUrl: 'auth/logout'
-              //     // resolve: {
-              //     //   factory: 'logoutCtrl'
-              //     //   }
-              //     // controller: function () {
-              //     //     $window.location.assign('/auth/logout');
-              //     // }
-              // })
               .otherwise({
                   redirectTo: '/'
               });
