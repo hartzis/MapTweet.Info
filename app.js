@@ -29,14 +29,16 @@ var app = express();
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 // Add in the cookieParser and flash middleware so we can
 // use them later
 app.use(cookieParser());
 // Initialize the express session. Needs to be given a secret property
 app.use(session({
-    secret: conf.secret
+    secret: conf.secret,
+    saveUninitialized: true,
+    resave: true
 }));
 // Hook in passport to the middleware chain
 app.use(passport.initialize());
@@ -106,7 +108,7 @@ app.get('/', function(req, res) {
 
 // handle all angular partial routes
 app.get('/partials/:name', angularRoutes.partials);
-// handle all angular template routes
+// handle all angular directive template routes
 app.get('/templates/:name', angularRoutes.templates);
 
 // save search information
