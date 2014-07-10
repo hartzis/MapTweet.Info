@@ -2,8 +2,8 @@
 (function(){
   var resultsControllers = angular.module('resultsControllers', ['ngSanitize']);
 
-  resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factoryTwitterSearch', 'markerFactory',
-    function($scope, $routeParams, factoryTwitterSearch, markerFactory) {
+  resultsControllers.controller('resultsCtrl', ['$scope', '$routeParams', 'factoryTwitterSearch', 'markerFactory', '$window',
+    function($scope, $routeParams, factoryTwitterSearch, markerFactory, $window) {
 
       // console.log('loaded resultsCtrl');
 
@@ -27,6 +27,13 @@
         },
         styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]
       };
+
+      // set height of map
+      console.log($window.outerHeight);
+      // console.log($('#map-canvas'));
+      $scope.windowHeight = $window.outerHeight - 68;
+      console.log($scope.windowHeight);
+      $('#map-canvas').css('height', $window.outerHeight + 'px');
 
 
       // setup markers and current marker
