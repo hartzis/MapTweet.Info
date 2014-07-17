@@ -28,13 +28,10 @@
         styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]
       };
 
-      // set height of map
-      console.log($window.outerHeight);
-      // console.log($('#map-canvas'));
-      $scope.windowHeight = $window.outerHeight - 68;
-      console.log($scope.windowHeight);
-      $('#map-canvas').css('height', $window.outerHeight + 'px');
-
+      // set height of map 'for now'
+      $window.document.getElementById('map-canvas').style.height = ($window.outerHeight - 200) + 'px';
+      // 'lockfixed' map for scrolling with the user
+      // $.lockfixed(".menu",{offset: {top: 120, bottom: 75}});
 
       // setup markers and current marker
       $scope.myMarkers = [];
