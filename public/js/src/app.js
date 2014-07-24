@@ -13,7 +13,8 @@
     'ngEnterDirectives',
     'tweetDirectives',
     'ui.bootstrap',
-    'ui.map'
+    'ui.map',
+    'mapDirectives'
 
   ]);
 
