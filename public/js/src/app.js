@@ -3,6 +3,7 @@
   var mapTweetInfoApp = angular.module('mapTweetInfoApp', [
     'ngResource',
     'ngRoute',
+    'ngAnimate',
     'searchControllers',
     'resultsControllers',
     'historyControllers',
