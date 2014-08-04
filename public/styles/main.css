@@ -260,10 +260,12 @@ https://github.com/daneden/animate.css
 .page-view.ng-leave        {
   -webkit-animation:fadeOut 0.5s both ease-in;
   animation:fadeOut 0.5s both ease-in;   
+  z-index: 8888;
 }
 .page-view.ng-enter    {  
   -webkit-animation:fadeIn 0.5s both ease-in;
   animation:fadeIn 0.5s both ease-in;    
+  z-index: 9999;
 }
 
 /* fadeIn */
