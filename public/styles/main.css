@@ -263,14 +263,19 @@ https://github.com/daneden/animate.css
   z-index: 8888;
 }
 .page-view.ng-enter    {  
-  -webkit-animation:fadeIn 0.5s both ease-in;
-  animation:fadeIn 0.5s both ease-in;    
+  -webkit-animation:fadeIn 1s both ease-in;
+  animation:fadeIn 1s both ease-in;    
   z-index: 9999;
+  /*position: absolute;*/
 }
 
 /* fadeIn */
 @-webkit-keyframes fadeIn {
   0% {
+    opacity: 0;
+  }
+
+  50% {
     opacity: 0;
   }
 
@@ -281,6 +286,10 @@ https://github.com/daneden/animate.css
 
 @keyframes fadeIn {
   0% {
+    opacity: 0;
+  }
+
+  50% {
     opacity: 0;
   }
 
