@@ -1,25 +1,26 @@
 (function() {
   var historyControllers = angular.module('historyControllers', []);
 
-  historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactory',
-    function($scope, $modal, historyFactory) {
-      $scope.user = {};
+  historyControllers.controller('historyCtrl', ['$scope', '$modal', 'historyFactory', 'searchHistory',
+    function($scope, $modal, historyFactory, searchHistory) {
+      // console.log('got search history in resolve-', searchHistory);
+      $scope.user = searchHistory;
       $scope.submittingRemoveAll = false;
 
-      historyFactory.retrieveSearchHistory()
-        .then(function(data) {
-          // console.log('got this back-', data);
-          angular.forEach(data.geo_searches, function(search) {
-            var tempLat = +search.latitude;
-            var tempLong = +search.longitude;
-            search.latitude = tempLat.toFixed(4);
-            search.longitude = tempLong.toFixed(4);
-          })
-          return data;
-        })
-        .then(function(cleanedData) {
-          $scope.user = cleanedData;
-        });
+      // historyFactory.retrieveSearchHistory()
+      //   .then(function(data) {
+      //     // console.log('got this back-', data);
+      //     angular.forEach(data.geo_searches, function(search) {
+      //       var tempLat = +search.latitude;
+      //       var tempLong = +search.longitude;
+      //       search.latitude = tempLat.toFixed(4);
+      //       search.longitude = tempLong.toFixed(4);
+      //     })
+      //     return data;
+      //   })
+      //   .then(function(cleanedData) {
+      //     $scope.user = cleanedData;
+      //   });
 
       // confirm remove all modal
       $scope.openConfirmRemoveAll = function() {

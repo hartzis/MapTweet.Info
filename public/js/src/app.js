@@ -33,7 +33,14 @@
               })
               .when('/history', {
                   templateUrl: 'partials/history',
-                  controller: 'historyCtrl'
+                  controller: 'historyCtrl',
+                  resolve: {
+                    searchHistory: ['historyFactory',
+                      function(historyFactory) {
+                        return historyFactory.retrieveSearchHistory();
+                      }
+                    ]
+                  }
               })
               .when('/about', {
                   templateUrl: 'partials/about'

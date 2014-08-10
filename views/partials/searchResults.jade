@@ -26,9 +26,9 @@
           |&nbsp&nbspSearch Query: 
           .label.label-default {{search.query}}
         .h6 Latitude: 
-          .label.label-default {{search.latitude}} 
+          .label.label-default {{search.latitude | number:4}} 
           | &nbspLongitude: 
-          .label.label-default {{search.longitude}}
+          .label.label-default {{search.longitude | number:4}}
           | &nbsp&nbspRadius: 
           .label.label-default {{search.radius}} {{search.radiusUnit}}
           | &nbsp&nbspTweet Count: 

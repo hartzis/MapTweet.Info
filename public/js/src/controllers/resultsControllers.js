@@ -58,10 +58,7 @@
           // console.log('recieved-', data);
           // set the search information
           $scope.search = data.search;
-          var tempLat = +data.search.latitude;
-          var tempLong = +data.search.longitude;
-          $scope.search.latitude = tempLat.toFixed(4);
-          $scope.search.longitude = tempLong.toFixed(4);
+
           //set map for factory
           markerFactory.setMyMap($scope.myMap);
 
