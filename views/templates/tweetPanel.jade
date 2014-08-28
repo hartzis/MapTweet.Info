@@ -1,14 +1,14 @@
 .row.panel.panel-info.tweet(ng-class="{ 'geo-tweet' : tweet.geo}")
   .col-xs-2.text-center
-    img.profile-img(ng-src="{{tweet.user.profile_image_url}}")
+    img.profile-img(ng-src="{{::tweet.user.profile_image_url}}")
   .col-xs-10
     .row
       .col-xs-12
-        h5 {{tweet.user.name}}&nbsp
-          a.small(ng-href="http://www.twitter.com/{{tweet.user.screen_name}}", target="_blank") @{{tweet.user.screen_name}}
-          span.small.pull-right.date-info &nbsp&nbsp&nbsp&nbsp{{tweet.created_at}}
+        h5 {{::tweet.user.name}}&nbsp
+          a.small(ng-href="http://www.twitter.com/{{::tweet.user.screen_name}}", target="_blank") @{{::tweet.user.screen_name}}
+          span.small.pull-right.date-info &nbsp&nbsp&nbsp&nbsp{{::tweet.created_at}}
     .row
       .col-xs-12
-        div(ng-bind-html="tweet.text")
+        div(ng-bind-html="::tweet.text")
     .row.tweet-globe-row(ng-hide="!tweet.geo")
       span.glyphicon.glyphicon-globe.tweet-globe

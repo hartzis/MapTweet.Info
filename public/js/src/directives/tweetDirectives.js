@@ -9,8 +9,6 @@
       templateUrl: 'templates/tweetPanel',
       scope: {
         tweet: '='
-        // ,
-        // whenClicked: '='
       }
     }
   }]);

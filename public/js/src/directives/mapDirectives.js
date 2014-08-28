@@ -7,8 +7,6 @@
       return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-          // console.log('canvasContainer-', 'scope-', scope, 'element-', element, 'attrs-', attrs);
-          // window.tempEle = element;
 
           // get height from window and set map height
           element.height($window.outerHeight - 200);
