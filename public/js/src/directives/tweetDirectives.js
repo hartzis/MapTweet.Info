@@ -1,9 +1,9 @@
 (function(){
-  var tweetDirectives = angular.module('tweetDirectives', []);
+  angular.module('tweetDirectives', [])
 
   // tweet panel directive
   // displayes tweet in specific format
-  tweetDirectives.directive('tweetPanel', [function(){
+  directive('tweetPanel', [function(){
     return {
       restrict: 'E',
       templateUrl: 'templates/tweetPanel',

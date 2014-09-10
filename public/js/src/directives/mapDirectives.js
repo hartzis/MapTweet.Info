@@ -1,8 +1,8 @@
 (function() {
-  var app = angular.module('mapDirectives', []);
+  angular.module('mapDirectives', [])
 
   // create directive with same name as uiMap, so that the height can be dynamically set based on window
-  app.directive('uiMap', [ '$window',
+  directive('uiMap', [ '$window',
     function($window) {
       return {
         restrict: 'A',
