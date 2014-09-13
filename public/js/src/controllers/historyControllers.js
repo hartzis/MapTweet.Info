@@ -27,23 +27,6 @@
         })
       }
 
-      $scope.performSearch = function(search) {
-        historyFactory.performSearch(search._id);
-      };
-
-      $scope.copyToSearch = function(search) {
-        historyFactory.copyToSearch(search);
-      }
-
-      $scope.removeSearch = function(search) {
-        historyFactory.removeSearch(search._id)
-          .then(function(response) {
-            if (response === 'removed'){
-              $scope.user.geo_searches.splice($scope.user.geo_searches.indexOf(search),1);
-            }
-          })
-      }
-
     }]);
 
   //modal controller
