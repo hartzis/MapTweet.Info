@@ -5,7 +5,7 @@
     function() {
       return {
         restrict: 'E',
-        templateUrl: 'templates/tweetPanel',
+        templateUrl: 'templates/searchHistory',
         scope: {
           geoSearches: '=geoSearches'
         },
