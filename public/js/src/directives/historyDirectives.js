@@ -7,7 +7,8 @@
         restrict: 'E',
         templateUrl: 'templates/searchHistory',
         scope: {
-          geoSearches: '=geoSearches'
+          geoSearches: '=geoSearches',
+          searchFilter: '=searchFilter'
         },
         controller: ['historyFactory', 
           function(historyFactory) {
