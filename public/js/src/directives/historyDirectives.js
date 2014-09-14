@@ -1,6 +1,16 @@
 (function () {
   angular.module('historyDirectives', [])
 
+  /**************************
+  search-history: list of previous searches completed
+  
+  --- example use in jade ---
+  search-history(geo-searches="geoSearches", search-filter="searchFilter")
+
+  geo-searches: array of all previous searches
+  search-filter: $scope.model that is used to auto filter searches
+  
+  ******************************/
   .directive('searchHistory', [ 
     function() {
       return {
