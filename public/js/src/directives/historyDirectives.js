@@ -20,8 +20,9 @@
           geoSearches: '=geoSearches',
           searchFilter: '=searchFilter'
         },
-        controller: ['historyFactory', 
-          function(historyFactory) {
+        controller: ['$scope', 'historyFactory', 
+          function($scope, historyFactory) {
+            console.log('directive geoSearches-', $scope.geoSearches);
             $scope.performSearch = function(search) {
               historyFactory.performSearch(search._id);
             };

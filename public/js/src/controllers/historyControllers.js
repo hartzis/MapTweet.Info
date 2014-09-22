@@ -6,6 +6,7 @@
       // console.log('got search history in resolve-', searchHistory);
       $scope.user = searchHistory;
       $scope.submittingRemoveAll = false;
+      console.log('searchHistory-', $scope.user.geo_searches);
 
       // confirm remove all modal
       $scope.openConfirmRemoveAll = function() {

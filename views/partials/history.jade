@@ -22,41 +22,7 @@
           a.search-form-btns(href="#/") 
             span.glyphicon.glyphicon-search
             |&nbspSearch 
-    .row(ng-repeat="search in user.geo_searches | filter:searchHistory | orderBy: 'lastSearched':true")
-      .col-xs-12.col-sm-10.col-sm-offset-1.well.history-well
-        div.btn-group.pull-right
-          button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-            span.glyphicon.glyphicon-cog &nbsp
-            span.caret
-          ul.dropdown-menu.history-menu(role='menu')
-            li
-              a.history-menu(ng-click="performSearch(search)")
-                span.glyphicon.glyphicon-globe &nbsp
-                span Search
-            li
-              a.history-menu(ng-click="copyToSearch(search)")
-                span.glyphicon.glyphicon-log-in &nbsp
-                span Copy
-            li.divider
-            li
-              a.history-menu(ng-click="removeSearch(search)")
-                span.glyphicon.glyphicon-remove &nbsp
-                span Remove
-        .h4.form-inline
-          //- .label.label-info {{search.location}}
-          button(ng-click="performSearch(search)").btn.btn-info
-            span.glyphicon.glyphicon-globe
-            |&nbsp{{search.location}}
-        .h5.form-inline Search Query: 
-          .label.label-default {{search.query}}
-        .h6 Latitude: 
-          .label.label-default {{search.latitude | number:4}} 
-          | &nbspLongitude: 
-          .label.label-default {{search.longitude | number:4}}
-          | &nbsp&nbspRadius: 
-          .label.label-default {{search.radius}} {{search.radiusUnit}}
-          | &nbsp&nbspTweet Count: 
-          .label.label-default {{search.count}}
+    search-history(geo-searches="user.geo_searches", search-filter="searchHistory")
 script(type="text/ng-template", id="confirmRemoveAll.html")
   .modal-body.text-center
     h4 Please Confirm Remove All Search History

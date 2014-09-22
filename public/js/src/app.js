@@ -13,6 +13,7 @@
     'historyServices',
     'ngEnterDirectives',
     'tweetDirectives',
+    'historyDirectives',
     'ui.bootstrap',
     'ui.map',
     'mapDirectives'
