@@ -6,14 +6,16 @@
         img(ng-src="{{user.twitter.profile_image_url}}", alt="")
         h5 @{{user.screen_name}}
     .row.history-filter(ng-show="user.geo_searches.length != 0")
-      .col-xs-8.col-sm-9
-        .input-group
-            span.input-group-addon Filter:
-            input.form-control(ng-model="searchHistory")
-      .col-xs-4.col-sm-3.text-center
-        button(type="button", ng-click="openConfirmRemoveAll()", ng-disabled="submittingRemoveAll").btn.btn-danger.btn-sm
-          span.glyphicon.glyphicon-remove
-          |&nbspRemove All
+      .col-xs-12
+        .row
+          .col-xs-8.col-sm-9
+            .input-group
+                span.input-group-addon Filter:
+                input.form-control(ng-model="searchHistory")
+          .col-xs-4.col-sm-3.text-center
+            button(type="button", ng-click="openConfirmRemoveAll()", ng-disabled="submittingRemoveAll").btn.btn-danger.btn-sm
+              span.glyphicon.glyphicon-remove
+              |&nbspRemove All
     .row.well(ng-show="user.geo_searches.length === 0")
       .col-xs-12.text-center
         h3 No Search History

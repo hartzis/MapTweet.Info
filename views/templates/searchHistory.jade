@@ -1,7 +1,7 @@
 .row
   .col-xs-12
     .row(ng-repeat="search in geoSearches | filter:searchFilter | orderBy: 'lastSearched':true")
-      .col-xs-12.col-sm-10.col-sm-offset-1.well.history-well
+      .col-xs-12.well.history-well
         div.btn-group.pull-right
           button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
             span.glyphicon.glyphicon-cog &nbsp
