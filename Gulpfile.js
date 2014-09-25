@@ -1,13 +1,28 @@
 var gulp = require('gulp'),
   uglify = require('gulp-uglifyjs'),
   watch = require('gulp-watch'),
-  del = require('del');
+  del = require('del'),
+  jade = require('gulp-jade');
 
 // setup angular app paths
 var paths = {
   angular: ['public/js/src/app.js', 'public/js/src/**/*.js'],
-  minifiedLocation: 'public/js/min'
-}
+  minifiedLocation: 'public/js/min',
+  angularAppViews: {
+    jade: './views/app/**/*.jade',
+    hmtl: './public/html'
+  }
+};
+
+// compile jade templates to public/html
+gulp.task('templates', function() {
+
+  gulp.src('./views/app/**/*.jade')
+    .pipe(jade({
+      locals: angularAppViews.jade
+    }))
+    .pipe(gulp.dest(angularAppViews.html))
+});
 
 // clean old version of minified/uglified app
 gulp.task('clean', function (cb) {
