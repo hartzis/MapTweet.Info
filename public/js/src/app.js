@@ -16,7 +16,8 @@
     'historyDirectives',
     'ui.bootstrap',
     'ui.map',
-    'mapDirectives'
+    'mapDirectives',
+    'navControllerModule'
 
   ]);
 

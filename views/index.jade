@@ -28,7 +28,7 @@ html(lang="en")
     link(rel="stylesheet", href="styles/main.css")
     base(href="/")
   body
-    .navbar.navbar-inverse.navbar-static-top(role="navigation")
+    .navbar.navbar-inverse.navbar-static-top(role="navigation", ng-controller="navCtrl")
       .container-fluid
         .navbar-header
           button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
@@ -46,7 +46,7 @@ html(lang="en")
                 |&nbspSearch 
             li: a(href="#/about") About
           ul.nav.navbar-nav.navbar-right
-            li: a(href="#/history") Search History: @#{twitter_user.screen_name}
+            li: a(href="#/history") Search History: @{{user.twitter.screen_name}}
             li: a(href="/auth/logout", target="_self") Sign Out 
               span.glyphicon.glyphicon-remove
 

@@ -100,10 +100,18 @@ app.use(passportConfig.ensureAuthenticated);
 
 app.get('/', function(req, res) {
   // if user logged in go to index
-  // pass user info
-  res.render('index', {
-    twitter_user: req.user.twitter
-  });
+  res.render('index');
+});
+
+// send user twitter info
+// currently just username
+app.get('/api/user', function(req, res) {
+  var userInfo = {
+    twitter : {
+      screen_name : req.user.twitter.screen_name
+    }
+  };
+  res.send(userInfo);
 });
 
 // handle all angular partial routes
