@@ -88,8 +88,8 @@ app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
         failureRedirect: '/auth/login'
     }), function(res, req) {
-        // twitter login working redirecting to search
-        req.redirect('/')
+        // twitter login working sending user to main search page
+        req.sendfile('./public/html/index.html')
     });
 
 // ***** IMPORTANT ***** //
@@ -100,7 +100,7 @@ app.use(passportConfig.ensureAuthenticated);
 
 // if user logged in go to index
 app.get('/', function(req, res) {
-  res.render('index');
+  res.sendfile('./public/html/index.html')
 });
 
 // send user twitter info
