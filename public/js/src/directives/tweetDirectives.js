@@ -6,7 +6,7 @@
   .directive('tweetPanel', [function(){
     return {
       restrict: 'E',
-      templateUrl: 'templates/tweetPanel',
+      templateUrl: 'html/templates/tweetPanel.html',
       scope: {
         tweet: '='
       }

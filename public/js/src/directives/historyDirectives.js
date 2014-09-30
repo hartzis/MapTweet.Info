@@ -15,7 +15,7 @@
     function() {
       return {
         restrict: 'E',
-        templateUrl: 'templates/searchHistory',
+        templateUrl: 'html/templates/searchHistory.html',
         scope: {
           geoSearches: '=geoSearches',
           searchFilter: '=searchFilter'
