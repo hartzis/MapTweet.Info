@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 var paths = {
   angular: ['public/js/src/app.js', 'public/js/src/**/*.js'],
   minifiedLocation: 'public/js/min',
-  angularAppViews: {
+  views: {
     jade: './views/**/*.jade',
     html: './public/html'
   }
@@ -21,14 +21,14 @@ gulp.task('clean-angularApp', function (cb) {
 
 // clean old version of minified/uglified app
 gulp.task('clean-templates', function (cb) {
-  del([paths.angularAppViews.html+'/**/*.*'], cb);
+  del([paths.views.html+'/**/*.*'], cb);
 })
 
 // compile jade templates to public/html
 gulp.task('templates', ['clean-templates'], function() {
-  return gulp.src(paths.angularAppViews.jade)
+  return gulp.src(paths.views.jade)
     .pipe(jade())
-    .pipe(gulp.dest(paths.angularAppViews.html))
+    .pipe(gulp.dest(paths.views.html))
 })
 
 // setup uglify of angular app
@@ -43,11 +43,12 @@ gulp.task('angularApp', ['clean-angularApp'], function () {
 // watch task setup
 gulp.task('start-watch', function () {
   gulp.watch(paths.angular, ['angularApp']);
+  gulp.watch(paths.views.jade, ['templates'])
 })
 
 // watch procedure
-gulp.task('watch', ['start-watch', 'angularApp'])
+gulp.task('watch', ['start-watch', 'angularApp', 'templates'])
 
 // default task with no watch
-gulp.task('default', ['angularApp'])
+gulp.task('default', ['angularApp', 'templates'])
 
