@@ -3,10 +3,12 @@
 
   .controller('navCtrl', ['$scope', '$http', 
     function($scope, $http) {
-      console.log('loaded navCtrl');
 
       // get user info
-      
+      $http.get('/api/user')
+        .success(function(data) {
+          $scope.user = data;
+        })
 
     }])
 })();

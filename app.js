@@ -98,8 +98,8 @@ app.get('/auth/twitter/callback',
 // to .use()
 app.use(passportConfig.ensureAuthenticated);
 
+// if user logged in go to index
 app.get('/', function(req, res) {
-  // if user logged in go to index
   res.render('index');
 });
 
