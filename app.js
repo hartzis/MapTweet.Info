@@ -115,9 +115,9 @@ app.get('/api/user', function(req, res) {
 });
 
 // handle all angular partial routes
-app.get('/partials/:name', angularRoutes.partials);
+// app.get('/partials/:name', angularRoutes.partials);
 // handle all angular directive template routes
-app.get('/templates/:name', angularRoutes.templates);
+// app.get('/templates/:name', angularRoutes.templates);
 
 // save search information
 app.post('/api/search', searchController.postSearch);

@@ -26,15 +26,15 @@
       function($routeProvider, $locationProvider) {
           $routeProvider
               .when('/', {
-                  templateUrl: 'partials/search',
+                  templateUrl: 'html/partials/search.html',
                   controller: 'searchCtrl'
               })
               .when('/search/:searchId', {
-                  templateUrl: 'partials/searchResults',
+                  templateUrl: 'html/partials/searchResults.html',
                   controller: 'resultsCtrl'
               })
               .when('/history', {
-                  templateUrl: 'partials/history',
+                  templateUrl: 'html/partials/history.html',
                   controller: 'historyCtrl',
                   resolve: {
                     searchHistory: ['historyFactory',
@@ -45,7 +45,7 @@
                   }
               })
               .when('/about', {
-                  templateUrl: 'partials/about'
+                  templateUrl: 'html/partials/about.html'
               })
               .otherwise({
                   redirectTo: '/'
