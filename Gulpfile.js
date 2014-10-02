@@ -9,7 +9,7 @@ var paths = {
   angular: ['public/js/src/app.js', 'public/js/src/**/*.js'],
   minifiedLocation: 'public/js/min',
   views: {
-    jade: './views/**/*.jade',
+    jade: ['./views/**/*.jade', '!./views/about.jade', '!./views/layout.jade', '!./views/welcome.jade'],
     html: './public/html'
   }
 };
