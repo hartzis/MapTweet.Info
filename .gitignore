@@ -1,2 +1,4 @@
 node_modules
 config/devConf.js
+npm-debug.log
+bower_components/
