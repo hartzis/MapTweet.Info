@@ -45,9 +45,6 @@ app.use(passport.initialize());
 // Hook in the passport session management into the middleware chain.
 app.use(passport.session());
 
-// setup base angular route renders
-var angularRoutes = require('./controllers/angularRoutes');
-
 // load search save/load
 // and twitter api search controller 
 var searchController = require('./controllers/searchController');
@@ -113,11 +110,6 @@ app.get('/api/user', function(req, res) {
   };
   res.send(userInfo);
 });
-
-// handle all angular partial routes
-// app.get('/partials/:name', angularRoutes.partials);
-// handle all angular directive template routes
-// app.get('/templates/:name', angularRoutes.templates);
 
 // save search information
 app.post('/api/search', searchController.postSearch);
