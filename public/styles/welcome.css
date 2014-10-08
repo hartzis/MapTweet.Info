@@ -13,6 +13,17 @@ img.bg {
   left: 0;
 }
 
+/*
+  Setup default link colors to match twitter login colors
+ */
+a {
+  color: #55acee;
+}
+
+a:hover {
+  color: #006daa;
+}
+
 .thumb-row {
   margin-top: 15px;
 }
@@ -71,4 +82,17 @@ h1 {
 .share-buttons>li>a:hover {
   color: #000;
   background-color: transparent;
+}
+
+/*
+  Demo Gif label and image
+ */
+#demo-label {
+  left: -40%;
+  position: relative;
+  background-color: #FCBA44;
+}
+
+#demo-gif {
+  border: 2px solid #FCBA44;
 }
