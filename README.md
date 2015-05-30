@@ -1,8 +1,8 @@
 # MapTweet.Info
 
 ----
-## What is MapTweet.Info?
-[www.maptweet.info](http://www.maptweet.info)
+## What is MapTweet?
+[maptweet](http://maptweet.herokuapp.com)
 
 This web application allows you to search the twitter api for tweets at a given location with a specific query. If there are geo-located tweets( tweets that have a latitude and longitude ) they will be displayed on a map.
 
