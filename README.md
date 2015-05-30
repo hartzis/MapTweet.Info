@@ -1,5 +1,7 @@
 # MapTweet.Info
 
+![Image of how to use MapTweet](https://raw.githubusercontent.com/hartzis/MapTweet.Info/master/public/img/maptweet_demo.gif)
+
 ----
 ## What is MapTweet?
 [maptweet](http://maptweet.herokuapp.com)
