@@ -128,3 +128,6 @@ var port = Number(process.env.PORT || 5536);
 var server = app.listen(port, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });
+
+// keep maptweet alive!
+require('./utils').keepAlive();
