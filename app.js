@@ -86,7 +86,7 @@ app.get('/auth/twitter/callback',
         failureRedirect: '/auth/login'
     }), function(res, req) {
         // twitter login working sending user to main search page
-        req.sendfile('./public/html/index.html')
+        req.redirect('/');
     });
 
 // ***** IMPORTANT ***** //
