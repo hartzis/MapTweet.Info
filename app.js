@@ -130,4 +130,4 @@ var server = app.listen(port, function() {
 });
 
 // keep maptweet alive!
-require('./utils').keepAlive();
+// require('./utils').keepAlive();
