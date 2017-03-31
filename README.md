@@ -4,7 +4,7 @@
 
 ----
 ## What is MapTweet?
-[maptweet](http://maptweet.herokuapp.com)
+[maptweet](http://maptweet.herokuapp.com) - *no longer live due to issues/changes with heroku
 
 This web application allows you to search the twitter api for tweets at a given location with a specific query. If there are geo-located tweets( tweets that have a latitude and longitude ) they will be displayed on a map.
 
